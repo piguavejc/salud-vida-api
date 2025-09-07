@@ -1,6 +1,7 @@
 import { AddressModule } from 'src/modules/addresses/address.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { BillingModule } from 'src/modules/billings/billing.module';
 import { CategoryModule } from 'src/modules/categories/category.module';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -36,6 +37,7 @@ import { envSchema } from 'src/config/config';
     ProductModule,
     ProfileModule,
     AddressModule,
+    BillingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
