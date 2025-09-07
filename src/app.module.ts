@@ -4,10 +4,12 @@ import { AppService } from './app.service';
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { ConfigModule } from '@nestjs/config';
 import { GraphqlConfigModule } from 'src/shared/modules/graphql/graphql.module';
+import { JwtModule } from 'src/shared/modules/jwt/jwt.module';
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { Module } from '@nestjs/common';
-import { envSchema } from 'src/config/config';
+import { RbacModule } from 'src/shared/modules/rbac/rbac.module';
 import { TypeOrmConfigModule } from 'src/shared/modules/typeorm/typeorm.module';
+import { envSchema } from 'src/config/config';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { TypeOrmConfigModule } from 'src/shared/modules/typeorm/typeorm.module';
     }),
     TypeOrmConfigModule,
     GraphqlConfigModule,
+    JwtModule,
+    RbacModule,
   ],
   controllers: [AppController],
   providers: [AppService],
