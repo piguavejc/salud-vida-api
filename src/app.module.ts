@@ -10,6 +10,7 @@ import { JwtModule } from 'src/shared/modules/jwt/jwt.module';
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { Module } from '@nestjs/common';
 import { RbacModule } from 'src/shared/modules/rbac/rbac.module';
+import { SubcategoryModule } from 'src/modules/subcategories/subcategory.module';
 import { TypeOrmConfigModule } from 'src/shared/modules/typeorm/typeorm.module';
 import { UserModule } from 'src/modules/user/user.module';
 import { envSchema } from 'src/config/config';
@@ -28,6 +29,7 @@ import { envSchema } from 'src/config/config';
     UserModule,
     ImageModule,
     CategoryModule,
+    SubcategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
