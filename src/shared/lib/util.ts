@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-// import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
-import * as deepmerge from 'deepmerge';
-
 import {
   AutoResolverOpts,
   PagingStrategies,
@@ -9,6 +5,9 @@ import {
 } from '@nestjs-query/query-graphql';
 
 import { JwtAuthGuard } from 'src/shared/modules/jwt/guard/jwt.guard';
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+// import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
+import deepmerge from 'deepmerge';
 
 type CRUDResolverOptions = AutoResolverOpts<
   unknown,
