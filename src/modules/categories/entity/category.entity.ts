@@ -11,7 +11,7 @@ import { TextColumn } from 'src/shared/typeorm/columns/text-column';
 import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
 
 @ObjectType('Category')
-@Entity('category')
+@Entity('categories')
 export class CategoryEntity extends CommonEntity {
   @TextColumn()
   name: string;

@@ -9,7 +9,7 @@ import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
 
 @ObjectType('Subcategory')
-@Entity('subcategory')
+@Entity('subcategories')
 export class SubcategoryEntity extends CommonEntity {
   @TextColumn()
   name: string;
