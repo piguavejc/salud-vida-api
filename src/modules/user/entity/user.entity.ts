@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { IsEmail, IsEnum } from 'class-validator';
 
+import { AddressEntity } from 'src/modules/addresses/entity/address.entity';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 import { FilterableField } from '@nestjs-query/query-graphql';
 import { ObjectType } from '@nestjs/graphql';
@@ -27,4 +28,7 @@ export class UserEntity extends CommonEntity {
 
   @OneToMany(() => ProfileEntity, (profile) => profile.user)
   profiles: ProfileEntity[];
+
+  @OneToMany(() => AddressEntity, (address) => address.user)
+  addresses: AddressEntity[];
 }

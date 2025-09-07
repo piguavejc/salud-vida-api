@@ -1,3 +1,4 @@
+import { AddressModule } from 'src/modules/addresses/address.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CategoryModule } from 'src/modules/categories/category.module';
@@ -34,6 +35,7 @@ import { envSchema } from 'src/config/config';
     SubcategoryModule,
     ProductModule,
     ProfileModule,
+    AddressModule,
   ],
   controllers: [AppController],
   providers: [AppService],
