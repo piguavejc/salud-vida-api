@@ -1,5 +1,7 @@
+import { Entity, OneToMany } from 'typeorm';
+
+import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
-import { Entity } from 'typeorm';
 import { EnumColumn } from 'src/shared/typeorm/columns/enum.column';
 import { ObjectType } from '@nestjs/graphql';
 import { Provider } from 'src/modules/image/enums/image.enum';
@@ -16,4 +18,7 @@ export class ImageEntity extends CommonEntity {
 
   @EnumColumn(Provider, { default: Provider.Cloudinary })
   provider: Provider;
+
+  @OneToMany(() => CategoryEntity, (category) => category.image)
+  categories: CategoryEntity[];
 }

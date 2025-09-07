@@ -1,5 +1,6 @@
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CategoryModule } from 'src/modules/categories/category.module';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { ConfigModule } from '@nestjs/config';
@@ -26,6 +27,7 @@ import { envSchema } from 'src/config/config';
     RbacModule,
     UserModule,
     ImageModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
