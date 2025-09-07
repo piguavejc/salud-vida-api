@@ -1,18 +1,19 @@
 import { Entity, ManyToOne, OneToMany } from 'typeorm';
 
+import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 import { DateColumn } from 'src/shared/typeorm/columns/date-column';
 import { ImageEntity } from 'src/modules/image/entity/image.entity';
 import { IntColumn } from 'src/shared/typeorm/columns/int-column';
 import { ObjectType } from '@nestjs/graphql';
-import { ProductEntity } from 'src/modules/products/entity/products.entity';
+import { PriceColumn } from 'src/shared/typeorm/columns/price-column';
 import { SubcategoryEntity } from 'src/modules/subcategories/entity/subcategory.entity';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
 import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
 
-@ObjectType('Category')
-@Entity('category')
-export class CategoryEntity extends CommonEntity {
+@ObjectType('Product')
+@Entity('products')
+export class ProductEntity extends CommonEntity {
   @TextColumn()
   name: string;
 
@@ -22,18 +23,30 @@ export class CategoryEntity extends CommonEntity {
   @IntColumn()
   orderIndex: number;
 
-  @UuidColumn()
-  imageId: string;
-
   @DateColumn({ nullable: true })
   publicAt: Date | null;
 
-  @ManyToOne(() => ImageEntity, (image) => image.categories)
+  @IntColumn()
+  stock: number;
+
+  @PriceColumn()
+  price: string;
+
+  @UuidColumn()
+  imageId: string;
+
+  @UuidColumn()
+  subcategoryId: string;
+
+  @UuidColumn()
+  categoryId: string;
+
+  @ManyToOne(() => ImageEntity, (image) => image.products)
   image: ImageEntity;
 
-  @OneToMany(() => SubcategoryEntity, (subcategory) => subcategory.category)
+  @OneToMany(() => SubcategoryEntity, (subcategory) => subcategory.product)
   subcategories: SubcategoryEntity[];
 
-  @ManyToOne(() => ProductEntity, (product) => product.categories)
-  product: ProductEntity;
+  @OneToMany(() => CategoryEntity, (category) => category.product)
+  categories: CategoryEntity[];
 }

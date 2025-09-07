@@ -4,6 +4,7 @@ import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 import { EnumColumn } from 'src/shared/typeorm/columns/enum.column';
 import { ObjectType } from '@nestjs/graphql';
+import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { Provider } from 'src/modules/image/enums/image.enum';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
 
@@ -21,4 +22,7 @@ export class ImageEntity extends CommonEntity {
 
   @OneToMany(() => CategoryEntity, (category) => category.image)
   categories: CategoryEntity[];
+
+  @OneToMany(() => ProductEntity, (product) => product.image)
+  products: ProductEntity[];
 }

@@ -5,6 +5,7 @@ import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 import { DateColumn } from 'src/shared/typeorm/columns/date-column';
 import { IntColumn } from 'src/shared/typeorm/columns/int-column';
 import { ObjectType } from '@nestjs/graphql';
+import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
 
 @ObjectType('Subcategory')
@@ -24,4 +25,7 @@ export class SubcategoryEntity extends CommonEntity {
 
   @ManyToOne(() => CategoryEntity, (category) => category.subcategories)
   category: CategoryEntity;
+
+  @ManyToOne(() => ProductEntity, (product) => product.subcategories)
+  product: ProductEntity;
 }
