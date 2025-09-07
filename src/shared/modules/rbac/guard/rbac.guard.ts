@@ -8,7 +8,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { type Observable } from 'rxjs';
-import { UserContext } from 'src/shared/context/auth.context';
+import { UserContext } from 'src/shared/modules/context/auth.context';
 import { ROLE_KEY } from 'src/shared/modules/rbac/decorator/rbac.decorator';
 import { Role } from 'src/shared/modules/rbac/enum/rbac.enum';
 import { RbacService } from 'src/shared/modules/rbac/rbac.service';
