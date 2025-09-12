@@ -3,6 +3,7 @@ import { IsEmail, IsEnum } from 'class-validator';
 
 import { AddressEntity } from 'src/modules/addresses/entity/address.entity';
 import { BillingEntity } from 'src/modules/billings/entity/billing.entity';
+import { CartEntity } from 'src/modules/carts/entity/cart.entity';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 import { FilterableField } from '@nestjs-query/query-graphql';
 import { ObjectType } from '@nestjs/graphql';
@@ -35,4 +36,7 @@ export class UserEntity extends CommonEntity {
 
   @OneToMany(() => BillingEntity, (billing) => billing.user)
   billings: BillingEntity[];
+
+  @OneToMany(() => CartEntity, (cart) => cart.user)
+  carts: CartEntity[];
 }
