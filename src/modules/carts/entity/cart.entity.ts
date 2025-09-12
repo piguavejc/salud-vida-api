@@ -1,5 +1,6 @@
-import { Entity, ManyToOne } from 'typeorm';
+import { Entity, ManyToOne, OneToMany } from 'typeorm';
 
+import { CartItemEntity } from 'src/modules/cart-items/entity/cart-item.entity';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 import { ObjectType } from '@nestjs/graphql';
 import { PriceColumn } from 'src/shared/typeorm/columns/price-column';
@@ -29,4 +30,7 @@ export class CartEntity extends CommonEntity {
 
   @ManyToOne(() => UserEntity, (user) => user.carts)
   user: UserEntity;
+
+  @OneToMany(() => CartItemEntity, (cartItem) => cartItem.cart)
+  cartItems: CartItemEntity[];
 }

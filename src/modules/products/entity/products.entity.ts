@@ -1,5 +1,6 @@
 import { Entity, ManyToOne, OneToMany } from 'typeorm';
 
+import { CartItemEntity } from 'src/modules/cart-items/entity/cart-item.entity';
 import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 import { DateColumn } from 'src/shared/typeorm/columns/date-column';
@@ -49,4 +50,7 @@ export class ProductEntity extends CommonEntity {
 
   @OneToMany(() => CategoryEntity, (category) => category.product)
   categories: CategoryEntity[];
+
+  @OneToMany(() => CartItemEntity, (cartItem) => cartItem.product)
+  cartItems: CartItemEntity[];
 }

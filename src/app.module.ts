@@ -2,6 +2,7 @@ import { AddressModule } from 'src/modules/addresses/address.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BillingModule } from 'src/modules/billings/billing.module';
+import { CartItemModule } from 'src/modules/cart-items/cart-item.module';
 import { CartModule } from 'src/modules/carts/cart.module';
 import { CategoryModule } from 'src/modules/categories/category.module';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -40,6 +41,7 @@ import { envSchema } from 'src/config/config';
     AddressModule,
     BillingModule,
     CartModule,
+    CartItemModule,
   ],
   controllers: [AppController],
   providers: [AppService],
