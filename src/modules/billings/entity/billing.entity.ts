@@ -1,7 +1,8 @@
-import { Entity, ManyToOne } from 'typeorm';
+import { Entity, ManyToOne, OneToMany } from 'typeorm';
 
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 import { ObjectType } from '@nestjs/graphql';
+import { OrderEntity } from 'src/modules/orden/entity/order.entity';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
 import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
@@ -29,4 +30,7 @@ export class BillingEntity extends CommonEntity {
 
   @ManyToOne(() => UserEntity, (user) => user.billings)
   user: UserEntity;
+
+  @OneToMany(() => OrderEntity, (order) => order.billing)
+  orders: OrderEntity[];
 }

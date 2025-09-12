@@ -13,6 +13,7 @@ import { ImageModule } from 'src/modules/image/image.module';
 import { JwtModule } from 'src/shared/modules/jwt/jwt.module';
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { Module } from '@nestjs/common';
+import { OrderModule } from 'src/modules/orden/orden.module';
 import { ProductModule } from 'src/modules/products/products.module';
 import { ProfileModule } from 'src/modules/profiles/profile.module';
 import { RbacModule } from 'src/shared/modules/rbac/rbac.module';
@@ -42,6 +43,7 @@ import { envSchema } from 'src/config/config';
     BillingModule,
     CartModule,
     CartItemModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

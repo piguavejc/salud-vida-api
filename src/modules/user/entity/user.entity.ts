@@ -8,6 +8,7 @@ import { CartItemEntity } from 'src/modules/cart-items/entity/cart-item.entity';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 import { FilterableField } from '@nestjs-query/query-graphql';
 import { ObjectType } from '@nestjs/graphql';
+import { OrderEntity } from 'src/modules/orden/entity/order.entity';
 import { ProfileEntity } from 'src/modules/profiles/entity/profile.entity';
 import { Role } from 'src/shared/modules/rbac/enum/rbac.enum';
 
@@ -43,4 +44,7 @@ export class UserEntity extends CommonEntity {
 
   @OneToMany(() => CartItemEntity, (cartItem) => cartItem.user)
   cartItems: CartItemEntity[];
+
+  @OneToMany(() => OrderEntity, (order) => order.user)
+  orders: OrderEntity[];
 }
