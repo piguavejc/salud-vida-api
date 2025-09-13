@@ -11,6 +11,7 @@ import { CashPaymentEntity } from 'src/modules/cash-payments/entity/cash-payment
 import { OrderEntity } from 'src/modules/orden/entity/order.entity';
 import { PaymentEntity } from 'src/modules/payments/entity/payment.entity';
 import { ProfileEntity } from 'src/modules/profiles/entity/profile.entity';
+import { TransferPaymentEntity } from 'src/modules/transfer-payments/entity/transfer-payment.entity';
 import { Role } from 'src/shared/modules/rbac/enum/rbac.enum';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 
@@ -58,4 +59,10 @@ export class UserEntity extends CommonEntity {
 
   @OneToMany(() => CashPaymentEntity, (cashPayment) => cashPayment.user)
   cashPayments: CashPaymentEntity[];
+
+  @OneToMany(
+    () => TransferPaymentEntity,
+    (transferPayment) => transferPayment.user,
+  )
+  transferPayments: TransferPaymentEntity[];
 }
