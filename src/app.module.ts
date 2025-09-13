@@ -2,6 +2,7 @@ import { AddressModule } from 'src/modules/addresses/address.module';
 import { BillingModule } from 'src/modules/billings/billing.module';
 import { CartItemModule } from 'src/modules/cart-items/cart-item.module';
 import { CartModule } from 'src/modules/carts/cart.module';
+import { CashPaymentModule } from 'src/modules/cash-payments/cash-payment.module';
 import { CategoryModule } from 'src/modules/categories/category.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -48,6 +49,7 @@ import { TypeOrmConfigModule } from 'src/shared/modules/typeorm/typeorm.module';
     OrderModule,
     OrderItemModule,
     PaymentEntity,
+    CashPaymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

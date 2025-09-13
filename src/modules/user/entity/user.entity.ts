@@ -7,6 +7,7 @@ import { AddressEntity } from 'src/modules/addresses/entity/address.entity';
 import { BillingEntity } from 'src/modules/billings/entity/billing.entity';
 import { CartItemEntity } from 'src/modules/cart-items/entity/cart-item.entity';
 import { CartEntity } from 'src/modules/carts/entity/cart.entity';
+import { CashPaymentEntity } from 'src/modules/cash-payments/entity/cash-payment.entity';
 import { OrderEntity } from 'src/modules/orden/entity/order.entity';
 import { PaymentEntity } from 'src/modules/payments/entity/payment.entity';
 import { ProfileEntity } from 'src/modules/profiles/entity/profile.entity';
@@ -54,4 +55,7 @@ export class UserEntity extends CommonEntity {
 
   @OneToMany(() => PaymentEntity, (payment) => payment.user)
   payments: PaymentEntity[];
+
+  @OneToMany(() => CashPaymentEntity, (cashPayment) => cashPayment.user)
+  cashPayments: CashPaymentEntity[];
 }
