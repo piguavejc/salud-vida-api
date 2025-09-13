@@ -1,6 +1,7 @@
 import { Entity, ManyToOne } from 'typeorm';
 
 import { ObjectType } from '@nestjs/graphql';
+import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { OrderEntity } from 'src/modules/orden/entity/order.entity';
 import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
@@ -44,4 +45,7 @@ export class OrderItemEntity extends CommonEntity {
 
   @ManyToOne(() => UserEntity, (user) => user.orderItems)
   user: UserEntity;
+
+  @ManyToOne(() => LocalEntity, (local) => local.orderItems)
+  local: LocalEntity;
 }

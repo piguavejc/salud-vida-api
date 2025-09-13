@@ -1,12 +1,13 @@
 import { Entity, ManyToOne } from 'typeorm';
 
+import { ObjectType } from '@nestjs/graphql';
 import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
-import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
+import { LocalEntity } from 'src/modules/locals/entity/local.entity';
+import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { DateColumn } from 'src/shared/typeorm/columns/date-column';
 import { IntColumn } from 'src/shared/typeorm/columns/int-column';
-import { ObjectType } from '@nestjs/graphql';
-import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
+import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 
 @ObjectType('Subcategory')
 @Entity('subcategories')
@@ -28,4 +29,7 @@ export class SubcategoryEntity extends CommonEntity {
 
   @ManyToOne(() => ProductEntity, (product) => product.subcategories)
   product: ProductEntity;
+
+  @ManyToOne(() => LocalEntity, (local) => local.subcategories)
+  local: LocalEntity;
 }

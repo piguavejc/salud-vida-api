@@ -1,14 +1,15 @@
 import { Entity, ManyToOne, OneToMany } from 'typeorm';
 
-import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
-import { DateColumn } from 'src/shared/typeorm/columns/date-column';
-import { ImageEntity } from 'src/modules/image/entity/image.entity';
-import { IntColumn } from 'src/shared/typeorm/columns/int-column';
 import { ObjectType } from '@nestjs/graphql';
+import { ImageEntity } from 'src/modules/image/entity/image.entity';
+import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { SubcategoryEntity } from 'src/modules/subcategories/entity/subcategory.entity';
+import { DateColumn } from 'src/shared/typeorm/columns/date-column';
+import { IntColumn } from 'src/shared/typeorm/columns/int-column';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
 import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
+import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 
 @ObjectType('Category')
 @Entity('categories')
@@ -25,6 +26,9 @@ export class CategoryEntity extends CommonEntity {
   @UuidColumn()
   imageId: string;
 
+  @UuidColumn()
+  localId: string;
+
   @DateColumn({ nullable: true })
   publicAt: Date | null;
 
@@ -36,4 +40,7 @@ export class CategoryEntity extends CommonEntity {
 
   @ManyToOne(() => ProductEntity, (product) => product.categories)
   product: ProductEntity;
+
+  @ManyToOne(() => LocalEntity, (local) => local.categories)
+  local: LocalEntity;
 }

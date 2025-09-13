@@ -1,6 +1,7 @@
 import { Entity, ManyToOne } from 'typeorm';
 
 import { ObjectType } from '@nestjs/graphql';
+import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
 import { PriceColumn } from 'src/shared/typeorm/columns/price-column';
 import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
@@ -17,4 +18,7 @@ export class CashPaymentEntity extends CommonEntity {
 
   @ManyToOne(() => UserEntity, (user) => user.cashPayments)
   user: UserEntity;
+
+  @ManyToOne(() => LocalEntity, (local) => local.cashPayments)
+  local: LocalEntity;
 }

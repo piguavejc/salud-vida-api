@@ -4,6 +4,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { CartItemEntity } from 'src/modules/cart-items/entity/cart-item.entity';
 import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
 import { ImageEntity } from 'src/modules/image/entity/image.entity';
+import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { OrderItemEntity } from 'src/modules/order-items/entity/order-item.entity';
 import { SubcategoryEntity } from 'src/modules/subcategories/entity/subcategory.entity';
 import { DateColumn } from 'src/shared/typeorm/columns/date-column';
@@ -57,4 +58,7 @@ export class ProductEntity extends CommonEntity {
 
   @OneToMany(() => OrderItemEntity, (orderItem) => orderItem.product)
   orderItems: OrderItemEntity[];
+
+  @ManyToOne(() => LocalEntity, (local) => local.products)
+  local: LocalEntity;
 }
