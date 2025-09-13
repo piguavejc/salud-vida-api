@@ -8,6 +8,7 @@ import { BillingEntity } from 'src/modules/billings/entity/billing.entity';
 import { CartItemEntity } from 'src/modules/cart-items/entity/cart-item.entity';
 import { CartEntity } from 'src/modules/carts/entity/cart.entity';
 import { OrderEntity } from 'src/modules/orden/entity/order.entity';
+import { PaymentEntity } from 'src/modules/payments/entity/payment.entity';
 import { ProfileEntity } from 'src/modules/profiles/entity/profile.entity';
 import { Role } from 'src/shared/modules/rbac/enum/rbac.enum';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
@@ -50,4 +51,7 @@ export class UserEntity extends CommonEntity {
 
   @OneToMany(() => OrderEntity, (order) => order.user)
   orderItems: OrderEntity[];
+
+  @OneToMany(() => PaymentEntity, (payment) => payment.user)
+  payments: PaymentEntity[];
 }

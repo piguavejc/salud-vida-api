@@ -1,11 +1,12 @@
 import { Entity, ManyToOne, OneToMany } from 'typeorm';
 
-import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 import { ObjectType } from '@nestjs/graphql';
 import { OrderEntity } from 'src/modules/orden/entity/order.entity';
-import { TextColumn } from 'src/shared/typeorm/columns/text-column';
+import { PaymentEntity } from 'src/modules/payments/entity/payment.entity';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
+import { TextColumn } from 'src/shared/typeorm/columns/text-column';
 import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
+import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 
 @ObjectType('Address')
 @Entity('addresses')
@@ -24,4 +25,7 @@ export class AddressEntity extends CommonEntity {
 
   @OneToMany(() => OrderEntity, (order) => order.address)
   orders: OrderEntity[];
+
+  @OneToMany(() => PaymentEntity, (payment) => payment.address)
+  payments: PaymentEntity[];
 }

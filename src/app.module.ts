@@ -16,6 +16,7 @@ import { Module } from '@nestjs/common';
 import { envSchema } from 'src/config/config';
 import { OrderModule } from 'src/modules/orden/orden.module';
 import { OrderItemModule } from 'src/modules/order-items/order-item.module';
+import { PaymentEntity } from 'src/modules/payments/entity/payment.entity';
 import { ProductModule } from 'src/modules/products/products.module';
 import { ProfileModule } from 'src/modules/profiles/profile.module';
 import { SubcategoryModule } from 'src/modules/subcategories/subcategory.module';
@@ -46,6 +47,7 @@ import { TypeOrmConfigModule } from 'src/shared/modules/typeorm/typeorm.module';
     CartItemModule,
     OrderModule,
     OrderItemModule,
+    PaymentEntity,
   ],
   controllers: [AppController],
   providers: [AppService],
