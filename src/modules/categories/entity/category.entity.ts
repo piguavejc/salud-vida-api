@@ -1,6 +1,7 @@
-import { Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
 import { ObjectType } from '@nestjs/graphql';
+import { BannerEntity } from 'src/modules/banners/entity/banner.entity';
 import { ImageEntity } from 'src/modules/image/entity/image.entity';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { ProductEntity } from 'src/modules/products/entity/products.entity';
@@ -43,4 +44,7 @@ export class CategoryEntity extends CommonEntity {
 
   @ManyToOne(() => LocalEntity, (local) => local.categories)
   local: LocalEntity;
+
+  @OneToOne(() => BannerEntity, (banner) => banner.category)
+  banner: BannerEntity;
 }

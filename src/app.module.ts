@@ -1,4 +1,5 @@
 import { AddressModule } from 'src/modules/addresses/address.module';
+import { BannerModule } from 'src/modules/banners/banner.module';
 import { BillingModule } from 'src/modules/billings/billing.module';
 import { CartItemModule } from 'src/modules/cart-items/cart-item.module';
 import { CartModule } from 'src/modules/carts/cart.module';
@@ -50,6 +51,7 @@ import { TypeOrmConfigModule } from 'src/shared/modules/typeorm/typeorm.module';
     OrderItemModule,
     PaymentEntity,
     CashPaymentModule,
+    BannerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

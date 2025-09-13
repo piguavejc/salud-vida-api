@@ -1,6 +1,7 @@
-import { Entity, OneToMany } from 'typeorm';
+import { Entity, OneToMany, OneToOne } from 'typeorm';
 
 import { ObjectType } from '@nestjs/graphql';
+import { BannerEntity } from 'src/modules/banners/entity/banner.entity';
 import { CartItemEntity } from 'src/modules/cart-items/entity/cart-item.entity';
 import { CartEntity } from 'src/modules/carts/entity/cart.entity';
 import { CashPaymentEntity } from 'src/modules/cash-payments/entity/cash-payment.entity';
@@ -60,4 +61,7 @@ export class LocalEntity extends CommonEntity {
 
   @OneToMany(() => CashPaymentEntity, (cashPayment) => cashPayment.local)
   cashPayments: CashPaymentEntity[];
+
+  @OneToOne(() => BannerEntity, (banner) => banner.local)
+  banner: BannerEntity;
 }
