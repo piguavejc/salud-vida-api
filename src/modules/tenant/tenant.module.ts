@@ -1,0 +1,26 @@
+import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql';
+import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm';
+import { Module } from '@nestjs/common';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
+import { TenantService } from 'src/modules/tenant/tenant.service';
+import { createCustomResolver } from 'src/shared/lib/util';
+import { JwtModule } from 'src/shared/modules/jwt/jwt.module';
+
+@Module({
+  imports: [
+    NestjsQueryGraphQLModule.forFeature({
+      imports: [NestjsQueryTypeOrmModule.forFeature([TenantEntity]), JwtModule],
+      services: [TenantService],
+      resolvers: [
+        createCustomResolver({
+          DTOClass: TenantEntity,
+          EntityClass: TenantEntity,
+          ServiceClass: TenantService,
+        }),
+      ],
+    }),
+  ],
+  providers: [TenantService],
+  exports: [TenantService],
+})
+export class TenantModule {}
