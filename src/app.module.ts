@@ -11,6 +11,7 @@ import { AppService } from './app.service';
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { ConfigModule } from '@nestjs/config';
 import { ImageModule } from 'src/modules/image/image.module';
+import { LocalModule } from 'src/modules/locals/local.module';
 import { GraphqlConfigModule } from 'src/shared/modules/graphql/graphql.module';
 import { JwtModule } from 'src/shared/modules/jwt/jwt.module';
 /* eslint-disable @typescript-eslint/no-unsafe-return */
@@ -18,12 +19,13 @@ import { Module } from '@nestjs/common';
 import { envSchema } from 'src/config/config';
 import { OrderModule } from 'src/modules/orden/orden.module';
 import { OrderItemModule } from 'src/modules/order-items/order-item.module';
-import { PaymentEntity } from 'src/modules/payments/entity/payment.entity';
+import { PaymentModule } from 'src/modules/payments/payment.module';
 import { ProductModule } from 'src/modules/products/products.module';
 import { ProfileModule } from 'src/modules/profiles/profile.module';
 import { SubcategoryModule } from 'src/modules/subcategories/subcategory.module';
 import { TenantSettingModule } from 'src/modules/tenant-setting/tenant-setting.module';
 import { TenantModule } from 'src/modules/tenant/tenant.module';
+import { TransferPaymentModule } from 'src/modules/transfer-payments/transfer-payment.module';
 import { UserModule } from 'src/modules/user/user.module';
 import { RbacModule } from 'src/shared/modules/rbac/rbac.module';
 import { TypeOrmConfigModule } from 'src/shared/modules/typeorm/typeorm.module';
@@ -51,10 +53,12 @@ import { TypeOrmConfigModule } from 'src/shared/modules/typeorm/typeorm.module';
     CartItemModule,
     OrderModule,
     OrderItemModule,
-    PaymentEntity,
+    PaymentModule,
+    TransferPaymentModule,
     CashPaymentModule,
     BannerModule,
     TenantModule,
+    LocalModule,
     TenantSettingModule,
   ],
   controllers: [AppController],
