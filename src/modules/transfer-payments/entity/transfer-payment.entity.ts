@@ -24,6 +24,9 @@ export class TransferPaymentEntity extends CommonEntity {
   @UuidColumn()
   imageId: string;
 
+  @UuidColumn()
+  localId: string;
+
   @ManyToOne(() => UserEntity, (user) => user.transferPayments)
   user: UserEntity;
 

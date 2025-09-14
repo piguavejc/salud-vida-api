@@ -44,6 +44,9 @@ export class OrderEntity extends CommonEntity {
   @UuidColumn()
   billingId: string;
 
+  @UuidColumn()
+  localId: string;
+
   @ManyToOne(() => UserEntity, (user) => user.orders)
   user: UserEntity;
 

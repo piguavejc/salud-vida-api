@@ -43,6 +43,9 @@ export class PaymentEntity extends CommonEntity {
   @UuidColumn()
   billingId: string;
 
+  @UuidColumn()
+  localId: string;
+
   @ManyToOne(() => UserEntity, (user) => user.payments)
   user: UserEntity;
 

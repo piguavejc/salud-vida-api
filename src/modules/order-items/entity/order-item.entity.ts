@@ -37,6 +37,9 @@ export class OrderItemEntity extends CommonEntity {
   @UuidColumn()
   userId: string;
 
+  @UuidColumn()
+  localId: string;
+
   @ManyToOne(() => OrderEntity, (cart) => cart.orderItems)
   order: OrderEntity;
 

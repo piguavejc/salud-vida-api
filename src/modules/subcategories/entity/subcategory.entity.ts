@@ -8,6 +8,7 @@ import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { DateColumn } from 'src/shared/typeorm/columns/date-column';
 import { IntColumn } from 'src/shared/typeorm/columns/int-column';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
+import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 
 @ObjectType('Subcategory')
@@ -24,6 +25,9 @@ export class SubcategoryEntity extends CommonEntity {
 
   @DateColumn({ nullable: true })
   publicAt: Date | null;
+
+  @UuidColumn()
+  localId: string;
 
   @ManyToOne(() => CategoryEntity, (category) => category.subcategories)
   category: CategoryEntity;

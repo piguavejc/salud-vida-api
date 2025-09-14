@@ -45,6 +45,9 @@ export class ProductEntity extends CommonEntity {
   @UuidColumn()
   categoryId: string;
 
+  @UuidColumn()
+  localId: string;
+
   @ManyToOne(() => ImageEntity, (image) => image.products)
   image: ImageEntity;
 

@@ -29,6 +29,9 @@ export class CartEntity extends CommonEntity {
   @UuidColumn()
   userId: string;
 
+  @UuidColumn()
+  localId: string;
+
   @ManyToOne(() => UserEntity, (user) => user.carts)
   user: UserEntity;
 
