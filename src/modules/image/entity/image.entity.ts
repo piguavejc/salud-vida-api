@@ -4,6 +4,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
 import { Provider } from 'src/modules/image/enums/image.enum';
 import { ProductEntity } from 'src/modules/products/entity/products.entity';
+import { TenantSettingEntity } from 'src/modules/tenant-setting/entity/tenant-setting.entity';
 import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { TransferPaymentEntity } from 'src/modules/transfer-payments/entity/transfer-payment.entity';
 import { EnumColumn } from 'src/shared/typeorm/columns/enum.column';
@@ -40,4 +41,7 @@ export class ImageEntity extends CommonEntity {
 
   @ManyToOne(() => TenantEntity, (tenant) => tenant.images)
   tenant: TenantEntity;
+
+  @OneToOne(() => TenantSettingEntity, (tenantSetting) => tenantSetting.image)
+  tenantSetting: TenantSettingEntity;
 }

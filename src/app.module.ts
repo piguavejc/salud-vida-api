@@ -22,6 +22,7 @@ import { PaymentEntity } from 'src/modules/payments/entity/payment.entity';
 import { ProductModule } from 'src/modules/products/products.module';
 import { ProfileModule } from 'src/modules/profiles/profile.module';
 import { SubcategoryModule } from 'src/modules/subcategories/subcategory.module';
+import { TenantSettingModule } from 'src/modules/tenant-setting/tenant-setting.module';
 import { TenantModule } from 'src/modules/tenant/tenant.module';
 import { UserModule } from 'src/modules/user/user.module';
 import { RbacModule } from 'src/shared/modules/rbac/rbac.module';
@@ -54,6 +55,7 @@ import { TypeOrmConfigModule } from 'src/shared/modules/typeorm/typeorm.module';
     CashPaymentModule,
     BannerModule,
     TenantModule,
+    TenantSettingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

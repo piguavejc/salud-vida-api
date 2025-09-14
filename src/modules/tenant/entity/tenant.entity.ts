@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne } from 'typeorm';
 
 import { FilterableField } from '@nestjs-query/query-graphql';
 import { ObjectType } from '@nestjs/graphql';
@@ -18,6 +18,7 @@ import { PaymentEntity } from 'src/modules/payments/entity/payment.entity';
 import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { ProfileEntity } from 'src/modules/profiles/entity/profile.entity';
 import { SubcategoryEntity } from 'src/modules/subcategories/entity/subcategory.entity';
+import { TenantSettingEntity } from 'src/modules/tenant-setting/entity/tenant-setting.entity';
 import { TransferPaymentEntity } from 'src/modules/transfer-payments/entity/transfer-payment.entity';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
@@ -93,4 +94,7 @@ export class TenantEntity extends CommonEntity {
 
   @OneToMany(() => UserEntity, (user) => user.tenant)
   users: UserEntity[];
+
+  @OneToOne(() => TenantSettingEntity, (tenantSetting) => tenantSetting.tenant)
+  tenantSetting: TenantSettingEntity;
 }
