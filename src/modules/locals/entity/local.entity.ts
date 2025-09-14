@@ -1,4 +1,4 @@
-import { Entity, OneToMany, OneToOne } from 'typeorm';
+import { Entity, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
 import { ObjectType } from '@nestjs/graphql';
 import { BannerEntity } from 'src/modules/banners/entity/banner.entity';
@@ -11,6 +11,7 @@ import { OrderItemEntity } from 'src/modules/order-items/entity/order-item.entit
 import { PaymentEntity } from 'src/modules/payments/entity/payment.entity';
 import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { SubcategoryEntity } from 'src/modules/subcategories/entity/subcategory.entity';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { TransferPaymentEntity } from 'src/modules/transfer-payments/entity/transfer-payment.entity';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
 import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
@@ -28,6 +29,9 @@ export class LocalEntity extends CommonEntity {
 
   @UuidColumn()
   imageId!: string;
+
+  @UuidColumn()
+  tenantId: string;
 
   @OneToMany(() => CategoryEntity, (category) => category.local)
   categories: CategoryEntity[];
@@ -64,4 +68,7 @@ export class LocalEntity extends CommonEntity {
 
   @OneToOne(() => BannerEntity, (banner) => banner.local)
   banner: BannerEntity;
+
+  @ManyToOne(() => TenantEntity, (tenant) => tenant.locals)
+  tenant: TenantEntity;
 }

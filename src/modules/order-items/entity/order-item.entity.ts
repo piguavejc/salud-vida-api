@@ -4,6 +4,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { OrderEntity } from 'src/modules/orden/entity/order.entity';
 import { ProductEntity } from 'src/modules/products/entity/products.entity';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
 import { IntColumn } from 'src/shared/typeorm/columns/int-column';
 import { PriceColumn } from 'src/shared/typeorm/columns/price-column';
@@ -40,6 +41,9 @@ export class OrderItemEntity extends CommonEntity {
   @UuidColumn()
   localId: string;
 
+  @UuidColumn()
+  tenantId: string;
+
   @ManyToOne(() => OrderEntity, (cart) => cart.orderItems)
   order: OrderEntity;
 
@@ -51,4 +55,7 @@ export class OrderItemEntity extends CommonEntity {
 
   @ManyToOne(() => LocalEntity, (local) => local.orderItems)
   local: LocalEntity;
+
+  @ManyToOne(() => TenantEntity, (tenant) => tenant.orderItems)
+  tenant: TenantEntity;
 }

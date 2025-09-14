@@ -4,6 +4,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { AddressEntity } from 'src/modules/addresses/entity/address.entity';
 import { BillingEntity } from 'src/modules/billings/entity/billing.entity';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
 import { PriceColumn } from 'src/shared/typeorm/columns/price-column';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
@@ -46,6 +47,9 @@ export class PaymentEntity extends CommonEntity {
   @UuidColumn()
   localId: string;
 
+  @UuidColumn()
+  tenantId: string;
+
   @ManyToOne(() => UserEntity, (user) => user.payments)
   user: UserEntity;
 
@@ -57,4 +61,7 @@ export class PaymentEntity extends CommonEntity {
 
   @ManyToOne(() => LocalEntity, (local) => local.payments)
   local: LocalEntity;
+
+  @ManyToOne(() => TenantEntity, (tenant) => tenant.payments)
+  tenant: TenantEntity;
 }

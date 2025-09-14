@@ -1,5 +1,5 @@
 import { IsEmail, IsEnum } from 'class-validator';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 import { FilterableField } from '@nestjs-query/query-graphql';
 import { ObjectType } from '@nestjs/graphql';
@@ -11,8 +11,10 @@ import { CashPaymentEntity } from 'src/modules/cash-payments/entity/cash-payment
 import { OrderEntity } from 'src/modules/orden/entity/order.entity';
 import { PaymentEntity } from 'src/modules/payments/entity/payment.entity';
 import { ProfileEntity } from 'src/modules/profiles/entity/profile.entity';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { TransferPaymentEntity } from 'src/modules/transfer-payments/entity/transfer-payment.entity';
 import { Role } from 'src/shared/modules/rbac/enum/rbac.enum';
+import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
 
 @Entity('users')
@@ -32,6 +34,9 @@ export class UserEntity extends CommonEntity {
     default: Role.User,
   })
   role!: Role;
+
+  @UuidColumn()
+  tenantId: string;
 
   @OneToMany(() => ProfileEntity, (profile) => profile.user)
   profiles: ProfileEntity[];
@@ -65,4 +70,7 @@ export class UserEntity extends CommonEntity {
     (transferPayment) => transferPayment.user,
   )
   transferPayments: TransferPaymentEntity[];
+
+  @ManyToOne(() => TenantEntity, (tenant) => tenant.users)
+  tenant: TenantEntity;
 }

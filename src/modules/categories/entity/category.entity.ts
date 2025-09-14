@@ -6,6 +6,7 @@ import { ImageEntity } from 'src/modules/image/entity/image.entity';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { SubcategoryEntity } from 'src/modules/subcategories/entity/subcategory.entity';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { DateColumn } from 'src/shared/typeorm/columns/date-column';
 import { IntColumn } from 'src/shared/typeorm/columns/int-column';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
@@ -30,6 +31,9 @@ export class CategoryEntity extends CommonEntity {
   @UuidColumn()
   localId: string;
 
+  @UuidColumn()
+  tenantId: string;
+
   @DateColumn({ nullable: true })
   publicAt: Date | null;
 
@@ -47,4 +51,7 @@ export class CategoryEntity extends CommonEntity {
 
   @OneToOne(() => BannerEntity, (banner) => banner.category)
   banner: BannerEntity;
+
+  @ManyToOne(() => TenantEntity, (tenant) => tenant.categories)
+  tenant: TenantEntity;
 }

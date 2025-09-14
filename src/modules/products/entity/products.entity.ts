@@ -8,6 +8,7 @@ import { ImageEntity } from 'src/modules/image/entity/image.entity';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { OrderItemEntity } from 'src/modules/order-items/entity/order-item.entity';
 import { SubcategoryEntity } from 'src/modules/subcategories/entity/subcategory.entity';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { DateColumn } from 'src/shared/typeorm/columns/date-column';
 import { IntColumn } from 'src/shared/typeorm/columns/int-column';
 import { PriceColumn } from 'src/shared/typeorm/columns/price-column';
@@ -48,6 +49,9 @@ export class ProductEntity extends CommonEntity {
   @UuidColumn()
   localId: string;
 
+  @UuidColumn()
+  tenantId: string;
+
   @ManyToOne(() => ImageEntity, (image) => image.products)
   image: ImageEntity;
 
@@ -68,4 +72,7 @@ export class ProductEntity extends CommonEntity {
 
   @OneToOne(() => BannerEntity, (banner) => banner.product)
   banner: BannerEntity;
+
+  @ManyToOne(() => TenantEntity, (tenant) => tenant.products)
+  tenant: TenantEntity;
 }

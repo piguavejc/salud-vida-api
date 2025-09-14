@@ -1,10 +1,11 @@
-import { Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 
 import { ObjectType } from '@nestjs/graphql';
 import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { SubcategoryEntity } from 'src/modules/subcategories/entity/subcategory.entity';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { DateColumn } from 'src/shared/typeorm/columns/date-column';
 import { IntColumn } from 'src/shared/typeorm/columns/int-column';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
@@ -41,6 +42,9 @@ export class BannerEntity extends CommonEntity {
   @UuidColumn()
   productId: string;
 
+  @UuidColumn()
+  tenantId: string;
+
   @OneToOne(() => LocalEntity, (local) => local.banner)
   @JoinColumn({ name: 'local_id' })
   local: LocalEntity;
@@ -56,4 +60,7 @@ export class BannerEntity extends CommonEntity {
   @OneToOne(() => SubcategoryEntity, (local) => local.banner)
   @JoinColumn({ name: 'subcategory_id' })
   subcategory: SubcategoryEntity;
+
+  @ManyToOne(() => TenantEntity, (tenant) => tenant.banners)
+  tenant: TenantEntity;
 }

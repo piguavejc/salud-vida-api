@@ -5,6 +5,7 @@ import { AddressEntity } from 'src/modules/addresses/entity/address.entity';
 import { BillingEntity } from 'src/modules/billings/entity/billing.entity';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { OrderItemEntity } from 'src/modules/order-items/entity/order-item.entity';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
 import { PriceColumn } from 'src/shared/typeorm/columns/price-column';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
@@ -47,6 +48,9 @@ export class OrderEntity extends CommonEntity {
   @UuidColumn()
   localId: string;
 
+  @UuidColumn()
+  tenantId: string;
+
   @ManyToOne(() => UserEntity, (user) => user.orders)
   user: UserEntity;
 
@@ -61,4 +65,7 @@ export class OrderEntity extends CommonEntity {
 
   @ManyToOne(() => LocalEntity, (local) => local.orders)
   local: LocalEntity;
+
+  @ManyToOne(() => TenantEntity, (tenant) => tenant.orders)
+  tenant: TenantEntity;
 }

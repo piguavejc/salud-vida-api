@@ -3,6 +3,7 @@ import { Entity, ManyToOne, OneToMany } from 'typeorm';
 import { ObjectType } from '@nestjs/graphql';
 import { CartItemEntity } from 'src/modules/cart-items/entity/cart-item.entity';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
 import { PriceColumn } from 'src/shared/typeorm/columns/price-column';
 import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
@@ -32,6 +33,9 @@ export class CartEntity extends CommonEntity {
   @UuidColumn()
   localId: string;
 
+  @UuidColumn()
+  tenantId: string;
+
   @ManyToOne(() => UserEntity, (user) => user.carts)
   user: UserEntity;
 
@@ -40,4 +44,7 @@ export class CartEntity extends CommonEntity {
 
   @ManyToOne(() => LocalEntity, (local) => local.carts)
   local: LocalEntity;
+
+  @ManyToOne(() => TenantEntity, (tenant) => tenant.carts)
+  tenant: TenantEntity;
 }

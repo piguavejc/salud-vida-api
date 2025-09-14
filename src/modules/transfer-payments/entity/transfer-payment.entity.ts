@@ -3,6 +3,7 @@ import { Entity, ManyToOne, OneToOne } from 'typeorm';
 import { ObjectType } from '@nestjs/graphql';
 import { ImageEntity } from 'src/modules/image/entity/image.entity';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
+import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
 import { PriceColumn } from 'src/shared/typeorm/columns/price-column';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
@@ -27,6 +28,9 @@ export class TransferPaymentEntity extends CommonEntity {
   @UuidColumn()
   localId: string;
 
+  @UuidColumn()
+  tenantId: string;
+
   @ManyToOne(() => UserEntity, (user) => user.transferPayments)
   user: UserEntity;
 
@@ -35,4 +39,7 @@ export class TransferPaymentEntity extends CommonEntity {
 
   @ManyToOne(() => LocalEntity, (local) => local.transferPayments)
   local: LocalEntity;
+
+  @ManyToOne(() => TenantEntity, (tenant) => tenant.transferPayments)
+  tenant: TenantEntity;
 }
