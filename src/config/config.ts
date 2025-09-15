@@ -11,8 +11,10 @@ enum Environment {
 export const envSchema = z.object({
   NODE_ENV: z.nativeEnum(Environment).default(Environment.Development),
   PORT: z.coerce.number().default(3000),
-  DATABASE_URL: z.string().url(),
+  DATABASE_URL: z.url(),
   SECRET_PHRASE: z.string(),
+  CLOUDINARY_API_KEY: z.string(),
+  CLOUDINARY_API_SECRET: z.string(),
 });
 
 export type EnvVariables = z.infer<typeof envSchema>;
