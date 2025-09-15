@@ -17,9 +17,16 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:codegen": "graphql-codegen --config ./test/codegen.ts",
+    "test:api": "jest --config ./test/jest-api.json --detectOpenHandles --runInBand"
   },
   "dependencies": {
+    "@apollo/client": "^4.0.5",
+    "@graphql-codegen/cli": "^6.0.0",
+    "@graphql-codegen/import-types-preset": "^3.0.1",
+    "@graphql-codegen/typescript-graphql-files-modules": "^3.0.1",
+    "@graphql-codegen/typescript-operations": "^5.0.0",
     "@nestjs-query/core": "^0.30.0",
     "@nestjs-query/query-graphql": "^0.30.0",
     "@nestjs-query/query-typeorm": "^0.30.0",
@@ -36,6 +43,7 @@
     "dataloader": "^2.2.3",
     "deepmerge": "^4.3.1",
     "graphql": "^16.11.0",
+    "graphql-codegen": "^0.4.0",
     "graphql-subscriptions": "^3.0.0",
     "multer": "^2.0.2",
     "pg": "^8.16.3",
