@@ -5,6 +5,7 @@ import { CartItemModule } from 'src/modules/cart-items/cart-item.module';
 import { CartModule } from 'src/modules/carts/cart.module';
 import { CashPaymentModule } from 'src/modules/cash-payments/cash-payment.module';
 import { CategoryModule } from 'src/modules/categories/category.module';
+import { CloudinaryModule } from 'src/shared/modules/cloudinary/cloudinary.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -60,6 +61,7 @@ import { TypeOrmConfigModule } from 'src/shared/modules/typeorm/typeorm.module';
     TenantModule,
     LocalModule,
     TenantSettingModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
