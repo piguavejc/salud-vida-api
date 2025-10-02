@@ -1935,7 +1935,7 @@ export type TenantFilter = {
 
 export type TenantInput = {
   email: Scalars['String']['input'];
-  fullName: Scalars['String']['input'];
+  fullNames: Scalars['String']['input'];
   phone: Scalars['String']['input'];
 };
 
