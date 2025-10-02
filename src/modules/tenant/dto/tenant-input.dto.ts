@@ -10,7 +10,7 @@ export class TenantInputDto {
   @Field()
   @IsString()
   @IsNotEmpty()
-  fullName: string;
+  fullNames: string;
 
   @Field()
   @IsString()
