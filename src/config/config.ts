@@ -15,6 +15,8 @@ export const envSchema = z.object({
   SECRET_PHRASE: z.string(),
   CLOUDINARY_API_KEY: z.string(),
   CLOUDINARY_API_SECRET: z.string(),
+  CLERK_PUBLISHABLE_KEY: z.string(),
+  CLERK_SECRET_KEY: z.string(),
 });
 
 export type EnvVariables = z.infer<typeof envSchema>;
