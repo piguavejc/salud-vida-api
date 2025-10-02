@@ -616,6 +616,11 @@ export type CreateTenantSetting = {
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
+export type CreateTenantUserInput = {
+  email: Scalars['String']['input'];
+  tenantId: Scalars['String']['input'];
+};
+
 export type CreateTransferPayment = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -881,6 +886,7 @@ export type Mutation = {
   createOneTenantSetting: TenantSetting;
   createOneTransferPayment: TransferPayment;
   createOneUser: User;
+  createTenantUser: User;
   deleteOneAddress: AddressDeleteResponse;
   deleteOneBanner: BannerDeleteResponse;
   deleteOneBilling: BillingDeleteResponse;
@@ -1014,6 +1020,11 @@ export type MutationCreateOneTransferPaymentArgs = {
 
 export type MutationCreateOneUserArgs = {
   input: CreateOneUserInput;
+};
+
+
+export type MutationCreateTenantUserArgs = {
+  input: CreateTenantUserInput;
 };
 
 

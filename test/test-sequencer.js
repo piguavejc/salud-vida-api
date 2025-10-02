@@ -14,6 +14,7 @@ class CustomSequencer extends Sequencer {
   sort(tests) {
     const order = [
       "modules/tenant/tenant-create.test.ts",
+      "modules/user/user-create.test.ts",
     ];
 
     const orderedTests = tests.slice().sort((a, b) => {
