@@ -43,4 +43,16 @@ export class UserService extends TypeOrmQueryService<UserEntity> {
     await this.repo.save(user);
     return user;
   }
+
+  async createTenantOperator(
+    createUserInput: CreateTenantUserInputDto,
+  ): Promise<UserEntity> {
+    await this.verifyEmail(createUserInput.email);
+    const user = this.repo.create({
+      ...createUserInput,
+      role: Role.Operator,
+    });
+    await this.repo.save(user);
+    return user;
+  }
 }

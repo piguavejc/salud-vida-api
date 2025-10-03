@@ -14,4 +14,11 @@ export class UserResolver {
   ): Promise<UserEntity> {
     return this.service.createTenantUser(input);
   }
+
+  @Mutation(() => UserEntity)
+  async createTenantOperator(
+    @Args('input') input: CreateTenantUserInputDto,
+  ): Promise<UserEntity> {
+    return this.service.createTenantOperator(input);
+  }
 }
