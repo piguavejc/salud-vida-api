@@ -886,6 +886,7 @@ export type Mutation = {
   createOneTenantSetting: TenantSetting;
   createOneTransferPayment: TransferPayment;
   createOneUser: User;
+  createTenantDriver: User;
   createTenantOperator: User;
   createTenantUser: User;
   deleteOneAddress: AddressDeleteResponse;
@@ -1021,6 +1022,11 @@ export type MutationCreateOneTransferPaymentArgs = {
 
 export type MutationCreateOneUserArgs = {
   input: CreateOneUserInput;
+};
+
+
+export type MutationCreateTenantDriverArgs = {
+  input: CreateTenantUserInput;
 };
 
 
@@ -1787,10 +1793,8 @@ export type QueryUsersArgs = {
 
 export type Role =
   | 'Admin'
-  | 'Counter'
-  | 'Custom'
   | 'Customer'
-  | 'Developer'
+  | 'Driver'
   | 'Operator'
   | 'SuperAdmin'
   | 'User';

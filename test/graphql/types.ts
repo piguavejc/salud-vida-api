@@ -1,5 +1,12 @@
 import * as Types from './schema.types';
 
+export type CreateTenantDriverMutationVariables = Types.Exact<{
+  input: Types.CreateTenantUserInput;
+}>;
+
+
+export type CreateTenantDriverMutation = { __typename?: 'Mutation', createTenantDriver: { __typename?: 'User', id: string } };
+
 export type CreateTenantOperatorMutationVariables = Types.Exact<{
   input: Types.CreateTenantUserInput;
 }>;
