@@ -469,10 +469,11 @@ export type CreateImage = {
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type CreateLocal = {
-  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+export type CreateLocalInput = {
+  description: Scalars['String']['input'];
+  imageId: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  tenantId: Scalars['String']['input'];
 };
 
 export type CreateOneAddressInput = {
@@ -517,7 +518,7 @@ export type CreateOneImageInput = {
 
 export type CreateOneLocalInput = {
   /** The record to create */
-  local: CreateLocal;
+  local: CreateLocalInput;
 };
 
 export type CreateOneOrdenInput = {
@@ -908,6 +909,7 @@ export type Mutation = {
   deleteOneTenantSetting: TenantSettingDeleteResponse;
   deleteOneTransferPayment: TransferPaymentDeleteResponse;
   deleteOneUser: UserDeleteResponse;
+  publicLocal: Local;
   updateOneAddress: Address;
   updateOneBanner: Banner;
   updateOneBilling: Billing;
@@ -1132,6 +1134,11 @@ export type MutationDeleteOneTransferPaymentArgs = {
 
 export type MutationDeleteOneUserArgs = {
   input: DeleteOneUserInput;
+};
+
+
+export type MutationPublicLocalArgs = {
+  input: PublicLocalInput;
 };
 
 
@@ -1532,6 +1539,12 @@ export type ProfileSort = {
 export type ProfileSortFields =
   | 'createdAt'
   | 'id';
+
+export type PublicLocalInput = {
+  id: Scalars['String']['input'];
+  isPublic: Scalars['Boolean']['input'];
+  tenantId: Scalars['String']['input'];
+};
 
 export type Query = {
   address?: Maybe<Address>;
@@ -2185,12 +2198,6 @@ export type UpdateImage = {
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type UpdateLocal = {
-  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
 export type UpdateOneAddressInput = {
   /** The id of the record to update */
   id: Scalars['ID']['input'];
@@ -2251,7 +2258,7 @@ export type UpdateOneLocalInput = {
   /** The id of the record to update */
   id: Scalars['ID']['input'];
   /** The update to apply. */
-  update: UpdateLocal;
+  update: CreateLocalInput;
 };
 
 export type UpdateOneOrdenInput = {
