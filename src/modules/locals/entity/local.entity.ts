@@ -13,6 +13,7 @@ import { ProductEntity } from 'src/modules/products/entity/products.entity';
 import { SubcategoryEntity } from 'src/modules/subcategories/entity/subcategory.entity';
 import { TenantEntity } from 'src/modules/tenant/entity/tenant.entity';
 import { TransferPaymentEntity } from 'src/modules/transfer-payments/entity/transfer-payment.entity';
+import { DateColumn } from 'src/shared/typeorm/columns/date-column';
 import { TextColumn } from 'src/shared/typeorm/columns/text-column';
 import { UuidColumn } from 'src/shared/typeorm/columns/uuid-columnt';
 import { CommonEntity } from 'src/shared/typeorm/entity/common.entity';
@@ -26,6 +27,9 @@ export class LocalEntity extends CommonEntity {
 
   @TextColumn()
   description!: string;
+
+  @DateColumn({ nullable: true })
+  publicAt!: Date | null;
 
   @UuidColumn()
   imageId!: string;
