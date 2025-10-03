@@ -13,8 +13,12 @@ class CustomSequencer extends Sequencer {
 
   sort(tests) {
     const order = [
-      "modules/tenant/tenant-create.test.ts",
-      "modules/user/user-create.test.ts",
+      "test/modules/tenant/create/tenant-create.test.ts",
+      "test/modules/user/create/user-create.test.ts",
+      "test/modules/operator/create/operator-create.test.ts",
+      "test/modules/driver/create/driver-create.test.ts",
+      "test/modules/local/create/local-create.test.ts",
+      "test/modules/local/create/public-local.test.ts",
     ];
 
     const orderedTests = tests.slice().sort((a, b) => {
