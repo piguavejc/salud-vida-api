@@ -62,9 +62,18 @@ export class LocalService extends TypeOrmQueryService<LocalEntity> {
     input: UpdateOrderIndexInputDto,
   ): Promise<LocalEntity> {
     const { id, orderIndex, tenantId } = input;
+
     const local = await this.repo.findOne({ where: { id, tenantId } });
+    const count = await this.repo.count();
+
     if (!local) {
       throw new Error('Local not found');
+    }
+
+    if (orderIndex > count) {
+      throw new Error(
+        `El valor de orderIndex excede el número de locales existentes (${count})`,
+      );
     }
 
     if (local.orderIndex < orderIndex) {
