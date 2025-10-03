@@ -909,7 +909,7 @@ export type Mutation = {
   deleteOneTenantSetting: TenantSettingDeleteResponse;
   deleteOneTransferPayment: TransferPaymentDeleteResponse;
   deleteOneUser: UserDeleteResponse;
-  publicLocal: Local;
+  publicLocal: Array<Local>;
   updateOneAddress: Address;
   updateOneBanner: Banner;
   updateOneBilling: Billing;
@@ -1541,7 +1541,7 @@ export type ProfileSortFields =
   | 'id';
 
 export type PublicLocalInput = {
-  id: Scalars['String']['input'];
+  ids: Array<Scalars['String']['input']>;
   isPublic: Scalars['Boolean']['input'];
   tenantId: Scalars['String']['input'];
 };

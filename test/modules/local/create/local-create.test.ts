@@ -32,6 +32,9 @@ describe('Driver', () => {
       const graphqlError = JSON.stringify(error, null, 2);
       const message = getFirstErrorMessage(graphqlError);
       expect(message).toBeDefined();
+      expect(message).toBe(
+        `Ya existe un local con este nombre: ${input.local.name}`,
+      );
     }
   });
 });
