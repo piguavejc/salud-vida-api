@@ -886,6 +886,7 @@ export type Mutation = {
   createOneTenantSetting: TenantSetting;
   createOneTransferPayment: TransferPayment;
   createOneUser: User;
+  createTenantOperator: User;
   createTenantUser: User;
   deleteOneAddress: AddressDeleteResponse;
   deleteOneBanner: BannerDeleteResponse;
@@ -1020,6 +1021,11 @@ export type MutationCreateOneTransferPaymentArgs = {
 
 export type MutationCreateOneUserArgs = {
   input: CreateOneUserInput;
+};
+
+
+export type MutationCreateTenantOperatorArgs = {
+  input: CreateTenantUserInput;
 };
 
 
