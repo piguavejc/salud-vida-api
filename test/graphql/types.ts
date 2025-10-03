@@ -26,6 +26,13 @@ export type PublicLocalMutationVariables = Types.Exact<{
 
 export type PublicLocalMutation = { __typename?: 'Mutation', publicLocal: Array<{ __typename?: 'Local', id: string }> };
 
+export type UpdateOrderIndexByIdMutationVariables = Types.Exact<{
+  input: Types.UpdateOrderIndexInput;
+}>;
+
+
+export type UpdateOrderIndexByIdMutation = { __typename?: 'Mutation', updateOrderIndexById: { __typename?: 'Local', id: string } };
+
 export type CreateTenantOperatorMutationVariables = Types.Exact<{
   input: Types.CreateTenantUserInput;
 }>;

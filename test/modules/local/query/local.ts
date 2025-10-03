@@ -25,3 +25,11 @@ export const PUBLIC_LOCAL_MUTATION = gql`
     }
   }
 `;
+
+export const UPDATE_ORDER_INDEX_LOCAL_MUTATION = gql`
+  mutation UpdateOrderIndexById($input: UpdateOrderIndexInput!) {
+    updateOrderIndexById(input: $input) {
+      id
+    }
+  }
+`;

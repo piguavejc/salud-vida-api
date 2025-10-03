@@ -929,6 +929,7 @@ export type Mutation = {
   updateOneTenantSetting: TenantSetting;
   updateOneTransferPayment: TransferPayment;
   updateOneUser: User;
+  updateOrderIndexById: Local;
 };
 
 
@@ -1234,6 +1235,11 @@ export type MutationUpdateOneTransferPaymentArgs = {
 
 export type MutationUpdateOneUserArgs = {
   input: UpdateOneUserInput;
+};
+
+
+export type MutationUpdateOrderIndexByIdArgs = {
+  input: UpdateOrderIndexInput;
 };
 
 export type OffsetPageInfo = {
@@ -2335,6 +2341,12 @@ export type UpdateOrden = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type UpdateOrderIndexInput = {
+  id: Scalars['String']['input'];
+  orderIndex: Scalars['Int']['input'];
+  tenantId: Scalars['String']['input'];
 };
 
 export type UpdateOrderItems = {

@@ -4,6 +4,8 @@ import {
   LocalsQuery,
   PublicLocalMutation,
   PublicLocalMutationVariables,
+  UpdateOrderIndexByIdMutation,
+  UpdateOrderIndexByIdMutationVariables,
 } from 'test/graphql/types';
 
 export type Locals = LocalsQuery;
@@ -13,3 +15,7 @@ export type CreateLocal = CreateOneLocalMutation;
 
 export type PublicLocalInput = PublicLocalMutationVariables['input'];
 export type PublicLocal = PublicLocalMutation;
+
+export type UpdateOrderIndexInput =
+  UpdateOrderIndexByIdMutationVariables['input'];
+export type UpdateOrderIndex = UpdateOrderIndexByIdMutation;
