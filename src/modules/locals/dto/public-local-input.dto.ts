@@ -1,11 +1,12 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsBoolean, IsUUID } from 'class-validator';
+import { IsArray, IsBoolean, IsString, IsUUID } from 'class-validator';
 
 @InputType('PublicLocalInput')
 export class PublicLocalInputDto {
-  @Field()
-  @IsUUID()
-  id!: string;
+  @Field(() => [String])
+  @IsString({ each: true })
+  @IsArray()
+  ids!: string[];
 
   @Field()
   @IsUUID()

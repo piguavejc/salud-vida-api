@@ -8,10 +8,10 @@ import { LocalService } from 'src/modules/locals/local.service';
 export class LocalResolver {
   constructor(private readonly service: LocalService) {}
 
-  @Mutation(() => LocalEntity)
+  @Mutation(() => [LocalEntity])
   async publicLocal(
     @Args('input') input: PublicLocalInputDto,
-  ): Promise<LocalEntity | null> {
+  ): Promise<LocalEntity[]> {
     return this.service.publicLocal(input);
   }
 }

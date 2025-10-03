@@ -3,7 +3,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PublicLocalInputDto } from 'src/modules/locals/dto/public-local-input.dto';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
-import { Repository } from 'typeorm';
+import { CreateLocalInput } from 'test/graphql/schema.types';
+import { In, Repository } from 'typeorm';
 
 @Injectable()
 export class LocalService extends TypeOrmQueryService<LocalEntity> {
@@ -22,11 +23,36 @@ export class LocalService extends TypeOrmQueryService<LocalEntity> {
     return local;
   }
 
-  async publicLocal(input: PublicLocalInputDto): Promise<LocalEntity> {
-    const { id, isPublic } = input;
-    const local = await this.getById(id);
-    local.publicAt = isPublic ? new Date() : null;
-    await this.repo.save(local);
-    return local;
+  async createOne(record: CreateLocalInput): Promise<LocalEntity> {
+    const result = await this.verifyName(record.name, record.tenantId);
+
+    if (result) {
+      throw new Error(`Ya existe un local con este nombre: ${record.name}`);
+    }
+
+    const local = this.repo.create(record);
+    return await this.repo.save(local);
+  }
+
+  async updateOne(id: string, update: CreateLocalInput): Promise<LocalEntity> {
+    const result = await this.verifyName(update.name, update.tenantId);
+    if (result) {
+      throw new Error(`Ya existe un local con este nombre: ${update.name}`);
+    }
+    await this.repo.update(id, update);
+    return await this.getById(id);
+  }
+
+  async verifyName(name: string, tenantId: string): Promise<boolean> {
+    const local = await this.repo.findOne({ where: { name, tenantId } });
+    return local !== null && local !== undefined;
+  }
+
+  async publicLocal(input: PublicLocalInputDto): Promise<LocalEntity[]> {
+    const { ids, isPublic } = input;
+
+    await this.repo.update(ids, { publicAt: isPublic ? new Date() : null });
+
+    return await this.repo.find({ where: { id: In(ids) } });
   }
 }
