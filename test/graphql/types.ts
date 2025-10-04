@@ -1,5 +1,12 @@
 import * as Types from './schema.types';
 
+export type CreateOneCategoryMutationVariables = Types.Exact<{
+  input: Types.CreateOneCategoryInput;
+}>;
+
+
+export type CreateOneCategoryMutation = { __typename?: 'Mutation', createOneCategory: { __typename?: 'Category', id: string } };
+
 export type CreateTenantDriverMutationVariables = Types.Exact<{
   input: Types.CreateTenantUserInput;
 }>;

@@ -457,10 +457,12 @@ export type CreateCashPayment = {
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type CreateCategory = {
-  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+export type CreateCategoryInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  imageId: Scalars['String']['input'];
+  localId: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  tenantId: Scalars['String']['input'];
 };
 
 export type CreateImage = {
@@ -508,7 +510,7 @@ export type CreateOneCashPaymentInput = {
 
 export type CreateOneCategoryInput = {
   /** The record to create */
-  category: CreateCategory;
+  category: CreateCategoryInput;
 };
 
 export type CreateOneImageInput = {
@@ -2192,12 +2194,6 @@ export type UpdateCashPayment = {
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type UpdateCategory = {
-  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
 export type UpdateImage = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -2250,7 +2246,7 @@ export type UpdateOneCategoryInput = {
   /** The id of the record to update */
   id: Scalars['ID']['input'];
   /** The update to apply. */
-  update: UpdateCategory;
+  update: CreateCategoryInput;
 };
 
 export type UpdateOneImageInput = {
