@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const GET_LOCALS_QUERY = gql`
   query Locals {
-    locals(paging: { limit: 1, offset: 1 }) {
+    locals {
       nodes {
         id
       }

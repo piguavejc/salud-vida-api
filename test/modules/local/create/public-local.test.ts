@@ -1,12 +1,12 @@
 import {
+  GET_LOCALS_QUERY,
+  PUBLIC_LOCAL_MUTATION,
+} from 'test/modules/local/query/local';
+import {
   Locals,
   PublicLocal,
   PublicLocalInput,
 } from 'test/modules/local/query';
-import {
-  GET_LOCALS_QUERY,
-  PUBLIC_LOCAL_MUTATION,
-} from 'test/modules/local/query/local';
 
 import { apolloClient } from 'test/apollo-client/apollo-client';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
