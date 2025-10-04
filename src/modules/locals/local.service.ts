@@ -64,7 +64,7 @@ export class LocalService extends TypeOrmQueryService<LocalEntity> {
     const { id, orderIndex, tenantId } = input;
 
     const local = await this.repo.findOne({ where: { id, tenantId } });
-    const count = await this.repo.count();
+    const count = await this.repo.count({ where: { tenantId } });
 
     if (!local) {
       throw new Error('Local not found');
