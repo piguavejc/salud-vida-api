@@ -548,7 +548,7 @@ export type CreateOneProfileInput = {
 
 export type CreateOneSubcategoryInput = {
   /** The record to create */
-  subcategory: CreateSubcategory;
+  subcategory: CreateSubcategoryInput;
 };
 
 export type CreateOneTenantInput = {
@@ -601,10 +601,11 @@ export type CreateProfile = {
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type CreateSubcategory = {
-  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+export type CreateSubcategoryInput = {
+  categoryId: Scalars['String']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  localid: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type CreateTenantSetting = {
@@ -1140,7 +1141,7 @@ export type MutationDeleteOneUserArgs = {
 
 
 export type MutationPublicLocalArgs = {
-  input: PublicLocalInput;
+  input: TogglePublishedInput;
 };
 
 
@@ -1250,7 +1251,7 @@ export type MutationUpdateOneUserArgs = {
 
 
 export type MutationUpdateOrderIndexByIdArgs = {
-  input: UpdateOrderIndexInput;
+  input: UpdateOrderInput;
 };
 
 export type OffsetPageInfo = {
@@ -1556,11 +1557,6 @@ export type ProfileSort = {
 export type ProfileSortFields =
   | 'createdAt'
   | 'id';
-
-export type PublicLocalInput = {
-  ids: Array<Scalars['String']['input']>;
-  isPublic: Scalars['Boolean']['input'];
-};
 
 export type Query = {
   address?: Maybe<Address>;
@@ -2315,7 +2311,7 @@ export type UpdateOneSubcategoryInput = {
   /** The id of the record to update */
   id: Scalars['ID']['input'];
   /** The update to apply. */
-  update: UpdateSubcategory;
+  update: CreateSubcategoryInput;
 };
 
 export type UpdateOneTenantInput = {
@@ -2352,11 +2348,6 @@ export type UpdateOrden = {
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type UpdateOrderIndexInput = {
-  id: Scalars['String']['input'];
-  orderIndex: Scalars['Int']['input'];
-};
-
 export type UpdateOrderInput = {
   id: Scalars['String']['input'];
   orderIndex: Scalars['Float']['input'];
@@ -2381,12 +2372,6 @@ export type UpdateProduct = {
 };
 
 export type UpdateProfile = {
-  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type UpdateSubcategory = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;

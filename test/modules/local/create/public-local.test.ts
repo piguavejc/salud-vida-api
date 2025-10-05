@@ -24,7 +24,7 @@ describe('Local', () => {
 
       const input: PublicLocalInput = {
         ids: locals.map((local) => local.id),
-        isPublic: true,
+        published: true,
       };
 
       const response = await apolloClient.mutate<PublicLocal>({

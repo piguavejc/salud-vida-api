@@ -19,7 +19,7 @@ export const CREATE_LOCAL_MUTATION = gql`
 `;
 
 export const PUBLIC_LOCAL_MUTATION = gql`
-  mutation PublicLocal($input: PublicLocalInput!) {
+  mutation PublicLocal($input: TogglePublishedInput!) {
     publicLocal(input: $input) {
       id
     }
@@ -27,7 +27,7 @@ export const PUBLIC_LOCAL_MUTATION = gql`
 `;
 
 export const UPDATE_ORDER_INDEX_LOCAL_MUTATION = gql`
-  mutation UpdateOrderIndexById($input: UpdateOrderIndexInput!) {
+  mutation UpdateOrderIndexById($input: UpdateOrderInput!) {
     updateOrderIndexById(input: $input) {
       id
     }
