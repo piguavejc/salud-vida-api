@@ -1,4 +1,5 @@
 import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
+import { CategoryResolver } from 'src/modules/categories/resolver/category.resolver';
 import { CategoryService } from 'src/modules/categories/services/category.service';
 import { CreateCategoryInputDTO } from 'src/modules/categories/dto/create-category-input.dto';
 import { Module } from '@nestjs/common';
@@ -22,7 +23,7 @@ import { createCustomResolver } from 'src/shared/lib/util';
       ],
     }),
   ],
-  providers: [CategoryService],
+  providers: [CategoryService, CategoryResolver],
   exports: [CategoryService],
 })
 export class CategoryModule {}
