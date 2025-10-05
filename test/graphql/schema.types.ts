@@ -912,6 +912,7 @@ export type Mutation = {
   deleteOneTransferPayment: TransferPaymentDeleteResponse;
   deleteOneUser: UserDeleteResponse;
   publicLocal: Array<Local>;
+  toggleCategoryPublishedStatus: Array<Category>;
   updateOneAddress: Address;
   updateOneBanner: Banner;
   updateOneBilling: Billing;
@@ -1142,6 +1143,11 @@ export type MutationDeleteOneUserArgs = {
 
 export type MutationPublicLocalArgs = {
   input: PublicLocalInput;
+};
+
+
+export type MutationToggleCategoryPublishedStatusArgs = {
+  input: TogglePublishedInput;
 };
 
 
@@ -2099,6 +2105,12 @@ export type TenantSortFields =
   | 'fullNames'
   | 'id'
   | 'phone';
+
+export type TogglePublishedInput = {
+  ids: Array<Scalars['String']['input']>;
+  published: Scalars['Boolean']['input'];
+  tenantId: Scalars['String']['input'];
+};
 
 export type TransferPayment = {
   createdAt: Scalars['DateTime']['output'];

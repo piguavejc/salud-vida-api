@@ -36,6 +36,9 @@ describe('Category', () => {
       const graphqlError = JSON.stringify(error, null, 2);
       const message = getFirstErrorMessage(graphqlError);
       expect(message).toBeDefined();
+      expect(message).toBe(
+        `El nombre de la categoría ya existe para este local (${input.category.name})`,
+      );
     }
   });
 });
