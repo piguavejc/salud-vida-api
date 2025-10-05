@@ -3,8 +3,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateCategoryInputDTO } from 'src/modules/categories/dto/create-category-input.dto';
 import { TogglePublishedInputDTO } from 'src/modules/categories/dto/toggle-published-intput.dto';
+import { UpdateOrderInputDTO } from 'src/modules/categories/dto/update-order-input.dto';
 import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
-import { In, Repository } from 'typeorm';
+import { In, LessThan, MoreThan, Repository } from 'typeorm';
 
 @Injectable()
 export class CategoryService extends TypeOrmQueryService<CategoryEntity> {
@@ -64,5 +65,56 @@ export class CategoryService extends TypeOrmQueryService<CategoryEntity> {
     );
 
     return categories;
+  }
+
+  async updateCategoryOrder(
+    input: UpdateOrderInputDTO,
+  ): Promise<CategoryEntity> {
+    const { id, orderIndex, tenantId } = input;
+
+    const category = await this.repo.findOne({
+      where: { id, tenantId },
+    });
+
+    if (!category) {
+      throw new Error('Categoría no encontrada');
+    }
+
+    const count = await this.repo.count({ where: { tenantId } });
+
+    if (orderIndex > count) {
+      throw new Error(
+        `El índice de orden no puede ser mayor al número de categorías existentes (${count})`,
+      );
+    }
+
+    if (category.orderIndex < orderIndex) {
+      await this.repo.update(
+        {
+          orderIndex: MoreThan(category.orderIndex),
+          tenantId,
+        },
+        {
+          orderIndex: () => '"orderIndex" - 1',
+        },
+      );
+    }
+
+    if (category.orderIndex > orderIndex) {
+      await this.repo.update(
+        {
+          orderIndex: LessThan(category.orderIndex),
+          tenantId,
+        },
+        {
+          orderIndex: () => '"orderIndex" + 1',
+        },
+      );
+
+      category.orderIndex = orderIndex;
+      await this.repo.save(category);
+    }
+
+    return category;
   }
 }
