@@ -19,6 +19,13 @@ export type ToggleCategoryPublishedStatusMutationVariables = Types.Exact<{
 
 export type ToggleCategoryPublishedStatusMutation = { __typename?: 'Mutation', toggleCategoryPublishedStatus: Array<{ __typename?: 'Category', id: string }> };
 
+export type UpdateCategoryOrderMutationVariables = Types.Exact<{
+  input: Types.UpdateOrderInput;
+}>;
+
+
+export type UpdateCategoryOrderMutation = { __typename?: 'Mutation', updateCategoryOrder: { __typename?: 'Category', id: string } };
+
 export type CreateTenantDriverMutationVariables = Types.Exact<{
   input: Types.CreateTenantUserInput;
 }>;

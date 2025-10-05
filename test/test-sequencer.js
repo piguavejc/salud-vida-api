@@ -28,6 +28,7 @@ class CustomSequencer extends Sequencer {
       'test/modules/local/update/update-order-index.test.ts',
       'test/modules/category/create/create-category.test.ts',
       'test/modules/category/update/public-category.test.ts',
+      'test/modules/category/update/update-order-index.test.ts',
       // agrega aquí más rutas relativas al root en el orden deseado
     ];
 

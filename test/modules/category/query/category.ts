@@ -25,3 +25,11 @@ export const PUBLIC_CATEGORY_MUTATION = gql`
     }
   }
 `;
+
+export const UPDATE_CATEGORY_ORDER_INDEX_MUTATION = gql`
+  mutation UpdateCategoryOrder($input: UpdateOrderInput!) {
+    updateCategoryOrder(input: $input) {
+      id
+    }
+  }
+`;

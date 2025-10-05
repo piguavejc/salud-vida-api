@@ -913,6 +913,7 @@ export type Mutation = {
   deleteOneUser: UserDeleteResponse;
   publicLocal: Array<Local>;
   toggleCategoryPublishedStatus: Array<Category>;
+  updateCategoryOrder: Category;
   updateOneAddress: Address;
   updateOneBanner: Banner;
   updateOneBilling: Billing;
@@ -1148,6 +1149,11 @@ export type MutationPublicLocalArgs = {
 
 export type MutationToggleCategoryPublishedStatusArgs = {
   input: TogglePublishedInput;
+};
+
+
+export type MutationUpdateCategoryOrderArgs = {
+  input: UpdateOrderInput;
 };
 
 
@@ -2354,6 +2360,12 @@ export type UpdateOrden = {
 export type UpdateOrderIndexInput = {
   id: Scalars['String']['input'];
   orderIndex: Scalars['Int']['input'];
+  tenantId: Scalars['String']['input'];
+};
+
+export type UpdateOrderInput = {
+  id: Scalars['String']['input'];
+  orderIndex: Scalars['Float']['input'];
   tenantId: Scalars['String']['input'];
 };
 
