@@ -95,7 +95,7 @@ export class CategoryService extends TypeOrmQueryService<CategoryEntity> {
           tenantId,
         },
         {
-          orderIndex: () => '"orderIndex" - 1',
+          orderIndex: () => '"order_index" - 1',
         },
       );
     }
@@ -107,7 +107,7 @@ export class CategoryService extends TypeOrmQueryService<CategoryEntity> {
           tenantId,
         },
         {
-          orderIndex: () => '"orderIndex" + 1',
+          orderIndex: () => '"order_index" + 1',
         },
       );
 

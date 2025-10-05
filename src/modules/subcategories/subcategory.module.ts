@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql';
 import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm';
 import { SubcategoryEntity } from 'src/modules/subcategories/entity/subcategory.entity';
+import { SubcategoryResolver } from 'src/modules/subcategories/resolver/subcategory.resolver';
 import { SubcategoryService } from 'src/modules/subcategories/services/subcategory.service';
 import { createCustomResolver } from 'src/shared/lib/util';
 
@@ -24,7 +25,7 @@ import { createCustomResolver } from 'src/shared/lib/util';
       ],
     }),
   ],
-  providers: [SubcategoryService],
+  providers: [SubcategoryService, SubcategoryResolver],
   exports: [SubcategoryService],
 })
 export class SubcategoryModule {}
