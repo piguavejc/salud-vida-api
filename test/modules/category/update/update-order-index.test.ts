@@ -1,10 +1,12 @@
 import {
+  Categories,
+  UpdateCategoryOrderIndexInput,
+} from 'test/modules/category/query';
+import {
   GET_CATEGORIES_QUERY,
   UPDATE_CATEGORY_ORDER_INDEX_MUTATION,
 } from 'test/modules/category/query/category';
 
-import { Locals } from 'test/modules/local/query';
-import { UpdateCategoryOrderIndexInput } from 'test/modules/category/query';
 import { UpdateCategoryOrderMutation } from 'test/graphql/types';
 import { apolloClient } from 'test/apollo-client/apollo-client';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -14,11 +16,11 @@ import { getFirstErrorMessage } from 'src/shared/lib/util';
 describe('Update Order Index Category', () => {
   it('Order Index', async () => {
     try {
-      const categoryRespones = await apolloClient.query<Locals>({
+      const categoryRespones = await apolloClient.query<Categories>({
         query: GET_CATEGORIES_QUERY,
       });
 
-      const categories = categoryRespones.data?.locals.nodes ?? [];
+      const categories = categoryRespones.data?.categories.nodes ?? [];
 
       for (const category of categories) {
         const input: UpdateCategoryOrderIndexInput = {
@@ -44,6 +46,7 @@ describe('Update Order Index Category', () => {
         expect(createUser).toBeDefined();
       }
     } catch (error) {
+      console.log('error', JSON.stringify(error, null, 2));
       const graphqlError = JSON.stringify(error, null, 2);
       const message = getFirstErrorMessage(graphqlError);
       expect(message).toBeDefined();
