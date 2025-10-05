@@ -1,10 +1,10 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { TogglePublishedInputDTO } from 'src/modules/categories/dto/toggle-published-intput.dto';
-import { UpdateOrderInputDTO } from 'src/modules/categories/dto/update-order-input.dto';
 
 import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
 import { CategoryService } from 'src/modules/categories/services/category.service';
+import { TogglePublishedInputDTO } from 'src/shared/input.dto/toggle-published-intput.dto';
+import { UpdateOrderInputDTO } from 'src/shared/input.dto/update-order-input.dto';
 import type { JwtPayload } from 'src/shared/modules/context/auth.context';
 import { CurrentUser } from 'src/shared/modules/jwt/decorator/current-user';
 import { JwtAuthGuard } from 'src/shared/modules/jwt/guard/jwt.guard';

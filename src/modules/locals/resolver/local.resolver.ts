@@ -1,10 +1,10 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { PublicLocalInputDto } from 'src/modules/locals/dto/public-local-input.dto';
-import { UpdateOrderIndexInputDto } from 'src/modules/locals/dto/update-order-index-input.dto';
 
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
 import { LocalService } from 'src/modules/locals/local.service';
+import { TogglePublishedInputDTO } from 'src/shared/input.dto/toggle-published-intput.dto';
+import { UpdateOrderInputDTO } from 'src/shared/input.dto/update-order-input.dto';
 import type { JwtPayload } from 'src/shared/modules/context/auth.context';
 import { CurrentUser } from 'src/shared/modules/jwt/decorator/current-user';
 import { JwtAuthGuard } from 'src/shared/modules/jwt/guard/jwt.guard';
@@ -17,7 +17,7 @@ export class LocalResolver {
   @Mutation(() => [LocalEntity])
   async publicLocal(
     @CurrentUser() user: JwtPayload,
-    @Args('input') input: PublicLocalInputDto,
+    @Args('input') input: TogglePublishedInputDTO,
   ): Promise<LocalEntity[]> {
     input.tenantId = user.tenantId;
     return this.service.publicLocal(input);
@@ -27,7 +27,7 @@ export class LocalResolver {
   @Mutation(() => LocalEntity)
   async updateOrderIndexById(
     @CurrentUser() user: JwtPayload,
-    @Args('input') input: UpdateOrderIndexInputDto,
+    @Args('input') input: UpdateOrderInputDTO,
   ): Promise<LocalEntity> {
     input.tenantId = user.tenantId;
     return this.service.updateOrderIndexById(input);

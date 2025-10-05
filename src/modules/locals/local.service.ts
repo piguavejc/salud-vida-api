@@ -2,9 +2,9 @@ import { TypeOrmQueryService } from '@nestjs-query/query-typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CrateLocalInputDto } from 'src/modules/locals/dto/create-local-input.dto';
-import { PublicLocalInputDto } from 'src/modules/locals/dto/public-local-input.dto';
-import { UpdateOrderIndexInputDto } from 'src/modules/locals/dto/update-order-index-input.dto';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
+import { TogglePublishedInputDTO } from 'src/shared/input.dto/toggle-published-intput.dto';
+import { UpdateOrderInputDTO } from 'src/shared/input.dto/update-order-input.dto';
 
 import { In, LessThan, MoreThan, Repository } from 'typeorm';
 
@@ -54,17 +54,15 @@ export class LocalService extends TypeOrmQueryService<LocalEntity> {
     return local !== null && local !== undefined;
   }
 
-  async publicLocal(input: PublicLocalInputDto): Promise<LocalEntity[]> {
-    const { ids, isPublic } = input;
+  async publicLocal(input: TogglePublishedInputDTO): Promise<LocalEntity[]> {
+    const { ids, published } = input;
 
-    await this.repo.update(ids, { publicAt: isPublic ? new Date() : null });
+    await this.repo.update(ids, { publicAt: published ? new Date() : null });
 
     return await this.repo.find({ where: { id: In(ids) } });
   }
 
-  async updateOrderIndexById(
-    input: UpdateOrderIndexInputDto,
-  ): Promise<LocalEntity> {
+  async updateOrderIndexById(input: UpdateOrderInputDTO): Promise<LocalEntity> {
     const { id, orderIndex, tenantId } = input;
 
     const local = await this.repo.findOne({ where: { id, tenantId } });

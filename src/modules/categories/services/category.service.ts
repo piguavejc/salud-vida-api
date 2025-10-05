@@ -2,9 +2,9 @@ import { TypeOrmQueryService } from '@nestjs-query/query-typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateCategoryInputDTO } from 'src/modules/categories/dto/create-category-input.dto';
-import { TogglePublishedInputDTO } from 'src/modules/categories/dto/toggle-published-intput.dto';
-import { UpdateOrderInputDTO } from 'src/modules/categories/dto/update-order-input.dto';
 import { CategoryEntity } from 'src/modules/categories/entity/category.entity';
+import { TogglePublishedInputDTO } from 'src/shared/input.dto/toggle-published-intput.dto';
+import { UpdateOrderInputDTO } from 'src/shared/input.dto/update-order-input.dto';
 import { In, LessThan, MoreThan, Repository } from 'typeorm';
 
 @Injectable()
