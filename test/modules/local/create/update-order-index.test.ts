@@ -25,7 +25,6 @@ describe('Update Order Index Local', () => {
       for (const local of locals) {
         const input: UpdateOrderIndexInput = {
           id: local.id,
-          tenantId: 'c5294d40-168b-456a-be15-89304e0c2070',
           orderIndex: 1,
         };
 
@@ -33,6 +32,11 @@ describe('Update Order Index Local', () => {
           mutation: UPDATE_ORDER_INDEX_LOCAL_MUTATION,
           variables: {
             input,
+          },
+          context: {
+            headers: {
+              tenantId: 'c5294d40-168b-456a-be15-89304e0c2070',
+            },
           },
         });
 

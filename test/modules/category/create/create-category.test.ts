@@ -16,7 +16,6 @@ describe('Category', () => {
         description: 'Falta description',
         imageId: 'ec83dca8-6197-4777-82a5-f436f67be805',
         name: 'Local 1',
-        tenantId: 'c5294d40-168b-456a-be15-89304e0c2070',
         localId: '8b0487d4-56cc-4b80-82bc-652931aecb85',
       },
     };
@@ -26,6 +25,11 @@ describe('Category', () => {
         mutation: CREATE_CATEGORY_MUTATION,
         variables: {
           input,
+        },
+        context: {
+          headers: {
+            tenantId: 'c5294d40-168b-456a-be15-89304e0c2070',
+          },
         },
       });
 

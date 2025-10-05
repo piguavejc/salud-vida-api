@@ -25,13 +25,17 @@ describe('Local', () => {
       const input: PublicLocalInput = {
         ids: locals.map((local) => local.id),
         isPublic: true,
-        tenantId: 'c5294d40-168b-456a-be15-89304e0c2070',
       };
 
       const response = await apolloClient.mutate<PublicLocal>({
         mutation: PUBLIC_LOCAL_MUTATION,
         variables: {
           input,
+        },
+        context: {
+          headers: {
+            tenantId: 'c5294d40-168b-456a-be15-89304e0c2070',
+          },
         },
       });
 

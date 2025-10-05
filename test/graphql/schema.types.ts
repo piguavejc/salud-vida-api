@@ -462,7 +462,6 @@ export type CreateCategoryInput = {
   imageId: Scalars['String']['input'];
   localId: Scalars['String']['input'];
   name: Scalars['String']['input'];
-  tenantId: Scalars['String']['input'];
 };
 
 export type CreateImage = {
@@ -475,7 +474,6 @@ export type CreateLocalInput = {
   description: Scalars['String']['input'];
   imageId: Scalars['String']['input'];
   name: Scalars['String']['input'];
-  tenantId: Scalars['String']['input'];
 };
 
 export type CreateOneAddressInput = {
@@ -621,7 +619,6 @@ export type CreateTenantSetting = {
 
 export type CreateTenantUserInput = {
   email: Scalars['String']['input'];
-  tenantId: Scalars['String']['input'];
 };
 
 export type CreateTransferPayment = {
@@ -1563,7 +1560,6 @@ export type ProfileSortFields =
 export type PublicLocalInput = {
   ids: Array<Scalars['String']['input']>;
   isPublic: Scalars['Boolean']['input'];
-  tenantId: Scalars['String']['input'];
 };
 
 export type Query = {
@@ -2115,7 +2111,6 @@ export type TenantSortFields =
 export type TogglePublishedInput = {
   ids: Array<Scalars['String']['input']>;
   published: Scalars['Boolean']['input'];
-  tenantId: Scalars['String']['input'];
 };
 
 export type TransferPayment = {
@@ -2360,13 +2355,11 @@ export type UpdateOrden = {
 export type UpdateOrderIndexInput = {
   id: Scalars['String']['input'];
   orderIndex: Scalars['Int']['input'];
-  tenantId: Scalars['String']['input'];
 };
 
 export type UpdateOrderInput = {
   id: Scalars['String']['input'];
   orderIndex: Scalars['Float']['input'];
-  tenantId: Scalars['String']['input'];
 };
 
 export type UpdateOrderItems = {
