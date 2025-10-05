@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsInt, IsUUID } from 'class-validator';
+import { IsInt, IsOptional, IsUUID } from 'class-validator';
 
 @InputType('UpdateOrderInput')
 export class UpdateOrderInputDTO {
@@ -7,8 +7,8 @@ export class UpdateOrderInputDTO {
   @IsUUID()
   id: string;
 
-  @Field()
   @IsUUID()
+  @IsOptional()
   tenantId: string;
 
   @Field()

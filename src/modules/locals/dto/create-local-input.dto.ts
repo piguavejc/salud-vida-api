@@ -1,6 +1,18 @@
+import {
+  BeforeCreateOne,
+  CreateOneInputType,
+} from '@nestjs-query/query-graphql';
 import { Field, InputType } from '@nestjs/graphql';
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 
+import { UserContext } from 'src/shared/modules/context/auth.context';
+
+@BeforeCreateOne(
+  (input: CreateOneInputType<CrateLocalInputDto>, context: UserContext) => {
+    input.input.tenantId = context.req.user.tenantId;
+    return input;
+  },
+)
 @InputType('CreateLocalInput')
 export class CrateLocalInputDto {
   @Field()
@@ -17,7 +29,7 @@ export class CrateLocalInputDto {
   @IsUUID()
   imageId!: string;
 
-  @Field()
   @IsUUID()
+  @IsOptional()
   tenantId!: string;
 }

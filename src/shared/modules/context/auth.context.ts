@@ -1,16 +1,13 @@
-import { Role } from 'src/shared/modules/rbac/enum/rbac.enum';
 import { UserEntity } from 'src/modules/user/entity/user.entity';
 
-export type AuthenticatedUser = Pick<UserEntity, 'role' | 'id'>;
+export type AuthenticatedUser = Pick<UserEntity, 'role' | 'id' | 'tenantId'>;
 
 export interface JwtPayload {
-  role: Role;
-  id: string;
+  tenantId: string;
 }
 
 export interface UserContext {
   req: {
     user: AuthenticatedUser;
-    app: any;
   };
 }

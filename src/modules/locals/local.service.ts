@@ -1,10 +1,11 @@
 import { TypeOrmQueryService } from '@nestjs-query/query-typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CrateLocalInputDto } from 'src/modules/locals/dto/create-local-input.dto';
 import { PublicLocalInputDto } from 'src/modules/locals/dto/public-local-input.dto';
 import { UpdateOrderIndexInputDto } from 'src/modules/locals/dto/update-order-index-input.dto';
 import { LocalEntity } from 'src/modules/locals/entity/local.entity';
-import { CreateLocalInput } from 'test/graphql/schema.types';
+
 import { In, LessThan, MoreThan, Repository } from 'typeorm';
 
 @Injectable()
@@ -24,7 +25,7 @@ export class LocalService extends TypeOrmQueryService<LocalEntity> {
     return local;
   }
 
-  async createOne(record: CreateLocalInput): Promise<LocalEntity> {
+  async createOne(record: CrateLocalInputDto): Promise<LocalEntity> {
     const result = await this.verifyName(record.name, record.tenantId);
     const count = await this.repo.count();
 
@@ -36,7 +37,10 @@ export class LocalService extends TypeOrmQueryService<LocalEntity> {
     return await this.repo.save(local);
   }
 
-  async updateOne(id: string, update: CreateLocalInput): Promise<LocalEntity> {
+  async updateOne(
+    id: string,
+    update: CrateLocalInputDto,
+  ): Promise<LocalEntity> {
     const result = await this.verifyName(update.name, update.tenantId);
     if (result) {
       throw new Error(`Ya existe un local con este nombre: ${update.name}`);

@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsEmail, IsUUID } from 'class-validator';
+import { IsEmail, IsOptional, IsUUID } from 'class-validator';
 
 @InputType('CreateTenantUserInput')
 export class CreateTenantUserInputDto {
@@ -7,7 +7,7 @@ export class CreateTenantUserInputDto {
   @IsEmail()
   email: string;
 
-  @Field(() => String)
   @IsUUID()
+  @IsOptional()
   tenantId: string;
 }

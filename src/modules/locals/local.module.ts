@@ -1,12 +1,13 @@
+import { CrateLocalInputDto } from 'src/modules/locals/dto/create-local-input.dto';
+import { JwtAuthGuard } from 'src/shared/modules/jwt/guard/jwt.guard';
+import { JwtModule } from 'src/shared/modules/jwt/jwt.module';
+import { LocalEntity } from 'src/modules/locals/entity/local.entity';
+import { LocalResolver } from 'src/modules/locals/resolver/local.resolver';
+import { LocalService } from 'src/modules/locals/local.service';
+import { Module } from '@nestjs/common';
 import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql';
 import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm';
-import { Module } from '@nestjs/common';
-import { CrateLocalInputDto } from 'src/modules/locals/dto/create-local-input.dto';
-import { LocalEntity } from 'src/modules/locals/entity/local.entity';
-import { LocalService } from 'src/modules/locals/local.service';
-import { LocalResolver } from 'src/modules/locals/resolver/local.resolver';
 import { createCustomResolver } from 'src/shared/lib/util';
-import { JwtModule } from 'src/shared/modules/jwt/jwt.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { JwtModule } from 'src/shared/modules/jwt/jwt.module';
           DTOClass: LocalEntity,
           EntityClass: LocalEntity,
           ServiceClass: LocalService,
+          guards: [JwtAuthGuard],
         }),
       ],
     }),

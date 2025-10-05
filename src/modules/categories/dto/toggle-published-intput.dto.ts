@@ -1,5 +1,11 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsArray, IsBoolean, IsString, IsUUID } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsOptional,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 
 @InputType('TogglePublishedInput')
 export class TogglePublishedInputDTO {
@@ -12,7 +18,7 @@ export class TogglePublishedInputDTO {
   @IsBoolean()
   published: boolean;
 
-  @Field()
   @IsUUID()
+  @IsOptional()
   tenantId: string;
 }
