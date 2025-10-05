@@ -1,34 +1,34 @@
 import {
-  GET_LOCALS_QUERY,
-  PUBLIC_LOCAL_MUTATION,
-} from 'test/modules/local/query/local';
+  GET_SUBCATEGORIES_QUERY,
+  PUBLIC_SUBCATEGORY_MUTATION,
+} from 'test/modules/subcategory/query/subcategory';
 import {
-  Locals,
-  PublicLocal,
-  PublicLocalInput,
-} from 'test/modules/local/query';
+  PublicSubcategory,
+  PublicSubcategoryInput,
+  Subcategories,
+} from 'test/modules/subcategory/query';
 
 import { apolloClient } from 'test/apollo-client/apollo-client';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { getFirstErrorMessage } from 'src/shared/lib/util';
 
-describe('Local', () => {
-  it('Public local', async () => {
+describe('Category', () => {
+  it('Public category', async () => {
     try {
-      const localRespones = await apolloClient.query<Locals>({
-        query: GET_LOCALS_QUERY,
+      const subcategoryRespones = await apolloClient.query<Subcategories>({
+        query: GET_SUBCATEGORIES_QUERY,
       });
 
-      const locals = localRespones.data?.locals.nodes ?? [];
+      const subcategories = subcategoryRespones.data?.subcategories.nodes ?? [];
 
-      const input: PublicLocalInput = {
-        ids: locals.map((local) => local.id),
+      const input: PublicSubcategoryInput = {
+        ids: subcategories.map((subcategory) => subcategory.id),
         published: true,
       };
 
-      const response = await apolloClient.mutate<PublicLocal>({
-        mutation: PUBLIC_LOCAL_MUTATION,
+      const response = await apolloClient.mutate<PublicSubcategory>({
+        mutation: PUBLIC_SUBCATEGORY_MUTATION,
         variables: {
           input,
         },
@@ -45,6 +45,7 @@ describe('Local', () => {
     } catch (error) {
       const graphqlError = JSON.stringify(error, null, 2);
       const message = getFirstErrorMessage(graphqlError);
+
       expect(message).toBeDefined();
     }
   });

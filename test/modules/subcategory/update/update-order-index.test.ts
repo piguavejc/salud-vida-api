@@ -1,35 +1,35 @@
 import {
-  GET_LOCALS_QUERY,
-  UPDATE_ORDER_INDEX_LOCAL_MUTATION,
-} from 'test/modules/local/query/local';
+  GET_SUBCATEGORIES_QUERY,
+  UPDATE_SUBCATEGORY_ORDER_INDEX_MUTATION,
+} from 'test/modules/subcategory/query/subcategory';
 import {
-  Locals,
-  UpdateOrderIndex,
-  UpdateOrderIndexInput,
-} from 'test/modules/local/query';
+  Subcategories,
+  UpdateSubcategoryOrder,
+  UpdateSubcategoryOrderInput,
+} from 'test/modules/subcategory/query';
 
 import { apolloClient } from 'test/apollo-client/apollo-client';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { getFirstErrorMessage } from 'src/shared/lib/util';
 
-describe('Update Order Index Local', () => {
+describe('Update Order Index Subcategory', () => {
   it('Order Index', async () => {
     try {
-      const localRespones = await apolloClient.query<Locals>({
-        query: GET_LOCALS_QUERY,
+      const subcategoryRespones = await apolloClient.query<Subcategories>({
+        query: GET_SUBCATEGORIES_QUERY,
       });
 
-      const locals = localRespones.data?.locals.nodes ?? [];
+      const subcategories = subcategoryRespones.data?.subcategories.nodes ?? [];
 
-      for (const local of locals) {
-        const input: UpdateOrderIndexInput = {
-          id: local.id,
+      for (const subcategory of subcategories) {
+        const input: UpdateSubcategoryOrderInput = {
+          id: subcategory.id,
           orderIndex: 1,
         };
 
-        const response = await apolloClient.mutate<UpdateOrderIndex>({
-          mutation: UPDATE_ORDER_INDEX_LOCAL_MUTATION,
+        const response = await apolloClient.mutate<UpdateSubcategoryOrder>({
+          mutation: UPDATE_SUBCATEGORY_ORDER_INDEX_MUTATION,
           variables: {
             input,
           },
@@ -48,7 +48,7 @@ describe('Update Order Index Local', () => {
       const message = getFirstErrorMessage(graphqlError);
       expect(message).toBeDefined();
       expect(message).toContain(
-        'El valor de orderIndex excede el número de locales existentes',
+        'El índice de orden no puede ser mayor al número de categorías existentes',
       );
     }
   });

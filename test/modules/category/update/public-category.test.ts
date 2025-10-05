@@ -31,7 +31,7 @@ describe('Category', () => {
         },
         context: {
           headers: {
-            tenantId: 'c5294d40-168b-456a-be15-89304e0c2070',
+            'x-tenant-id': 'c5294d40-168b-456a-be15-89304e0c2070',
           },
         },
       });

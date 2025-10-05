@@ -66,6 +66,32 @@ export type CreateTenantOperatorMutationVariables = Types.Exact<{
 
 export type CreateTenantOperatorMutation = { __typename?: 'Mutation', createTenantOperator: { __typename?: 'User', id: string } };
 
+export type SubcategoriesQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type SubcategoriesQuery = { __typename?: 'Query', subcategories: { __typename?: 'SubcategoryConnection', nodes: Array<{ __typename?: 'Subcategory', id: string }> } };
+
+export type CreateOneSubcategoryMutationVariables = Types.Exact<{
+  input: Types.CreateOneSubcategoryInput;
+}>;
+
+
+export type CreateOneSubcategoryMutation = { __typename?: 'Mutation', createOneSubcategory: { __typename?: 'Subcategory', id: string } };
+
+export type ToggleSubcategoryPublishedStatusMutationVariables = Types.Exact<{
+  input: Types.TogglePublishedInput;
+}>;
+
+
+export type ToggleSubcategoryPublishedStatusMutation = { __typename?: 'Mutation', toggleSubcategoryPublishedStatus: Array<{ __typename?: 'Subcategory', id: string }> };
+
+export type UpdateSubcategoryOrderMutationVariables = Types.Exact<{
+  input: Types.UpdateOrderInput;
+}>;
+
+
+export type UpdateSubcategoryOrderMutation = { __typename?: 'Mutation', updateSubcategoryOrder: { __typename?: 'Subcategory', id: string } };
+
 export type CreateOneTenantMutationVariables = Types.Exact<{
   input: Types.CreateOneTenantInput;
 }>;

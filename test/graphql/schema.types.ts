@@ -604,7 +604,7 @@ export type CreateProfile = {
 export type CreateSubcategoryInput = {
   categoryId: Scalars['String']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
-  localid: Scalars['String']['input'];
+  localId: Scalars['String']['input'];
   name: Scalars['String']['input'];
 };
 
@@ -911,6 +911,7 @@ export type Mutation = {
   deleteOneUser: UserDeleteResponse;
   publicLocal: Array<Local>;
   toggleCategoryPublishedStatus: Array<Category>;
+  toggleSubcategoryPublishedStatus: Array<Subcategory>;
   updateCategoryOrder: Category;
   updateOneAddress: Address;
   updateOneBanner: Banner;
@@ -932,6 +933,7 @@ export type Mutation = {
   updateOneTransferPayment: TransferPayment;
   updateOneUser: User;
   updateOrderIndexById: Local;
+  updateSubcategoryOrder: Subcategory;
 };
 
 
@@ -1150,6 +1152,11 @@ export type MutationToggleCategoryPublishedStatusArgs = {
 };
 
 
+export type MutationToggleSubcategoryPublishedStatusArgs = {
+  input: TogglePublishedInput;
+};
+
+
 export type MutationUpdateCategoryOrderArgs = {
   input: UpdateOrderInput;
 };
@@ -1251,6 +1258,11 @@ export type MutationUpdateOneUserArgs = {
 
 
 export type MutationUpdateOrderIndexByIdArgs = {
+  input: UpdateOrderInput;
+};
+
+
+export type MutationUpdateSubcategoryOrderArgs = {
   input: UpdateOrderInput;
 };
 
