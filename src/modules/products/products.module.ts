@@ -1,3 +1,5 @@
+import { CreateProductInputDto } from 'src/modules/products/dto/create-product-input.dto';
+import { JwtAuthGuard } from 'src/shared/modules/jwt/guard/jwt.guard';
 import { Module } from '@nestjs/common';
 import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql';
 import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm';
@@ -12,9 +14,12 @@ import { createCustomResolver } from 'src/shared/lib/util';
       services: [ProductService],
       resolvers: [
         createCustomResolver({
+          CreateDTOClass: CreateProductInputDto,
+          UpdateDTOClass: CreateProductInputDto,
           DTOClass: ProductEntity,
           EntityClass: ProductEntity,
           ServiceClass: ProductService,
+          guards: [JwtAuthGuard],
         }),
       ],
     }),
